@@ -5,35 +5,35 @@ import kr.co.canon.member.domain.Member;
 public interface MemberService {
 
 	/**
-	 * 硫ㅻ쾭�벑濡� Service
+	 * 멤버 등록 Service
 	 * @param member
 	 * @return
 	 */
 	public int registerMember(Member member);
 
 	/**
-	 * 회원정보수정
+	 * 회원 정보 수정
 	 * @param member
 	 * @return
 	 */
 	public int updateMember(Member member);
 
 	/**
-	 * �쉶�썝�궘�젣
+	 * 회원 삭제(탈퇴)
 	 * @param memberId
 	 * @return
 	 */
 	public int deleteMember(String memberId);
 
 	/**
-	 * 硫ㅻ쾭 濡쒓렇�씤 Service
+	 * 멤버 로그인 Service
 	 * @param member
 	 * @return
 	 */
 	public Member memberLoginCheck(Member member);
 
 	/**
-	 * �쉶�썝�긽�꽭 議고쉶
+	 * 회원 상세 조회
 	 * @param memberId
 	 * @return
 	 */

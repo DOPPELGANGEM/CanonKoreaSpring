@@ -18,26 +18,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.co.canon.member.domain.Member;
 import kr.co.canon.member.service.MemberService;
 
-//@Controller ������̼�
+//@Controller 어노테이션
 @Controller
 public class MemberController {
-	//����������
+	//의존성주입
 	@Autowired
 	private MemberService service;
 	
-	//doGet - ������ �̵���
+	//doGet - 페이지 이동용
 	@RequestMapping(value="/member/register.do", method=RequestMethod.GET)
 	public String showRegisterForm(Model model) {
 		
-		return "member/joinMemberShip"; //jsp�����̸�
+		return "member/joinMemberShip"; //jsp 파일
 	}
 	
-	// doPost - ������ �����
+	//doPost - 데이터 저장용
 	
-	/**
-	 * ȸ������ Controller
-	 * 
-	 */
+	//회원가입 Controller
 	@RequestMapping(value="/member/register.do", method=RequestMethod.POST)
 		public String registerMember(
 			HttpServletRequest request
@@ -57,10 +54,10 @@ public class MemberController {
 		try {
 			int result = service.registerMember(member);
 			if(result > 0) {
-				// ����
+				// 성공
 				return "redirect:/index.jsp";
 			} else {
-				// ����
+				// 실패
 				return "common/serviceFailed";
 			}
 		} catch (Exception e) {
@@ -70,10 +67,8 @@ public class MemberController {
 		}
 		
 	}
-	/**
-	 * ȸ�����������ϱ� Controller
-	 * 
-	 */
+	
+	//회원수정 Controller
 	@RequestMapping(value="/member/update.do", method=RequestMethod.GET) 
 	public String showModifyView(@RequestParam("memberId") String memberId
 			, Model model) {
@@ -84,7 +79,7 @@ public class MemberController {
 				model.addAttribute("member", member);
 				return "member/modify";
 			} else {
-				model.addAttribute("msg", "��������ȸ�� �����Ͽ����ϴ�.");
+				model.addAttribute("msg", "데이터 조회에 실패하였습니다.");
 				return "common/serviceFailed";
 			}
 		} catch (Exception e) {
@@ -107,25 +102,20 @@ public class MemberController {
 			Member member = new Member(memberId, memberPw, memberEmail, memberPhone, memberAddress, memberHobby);
 			int result = service.updateMember(member);
 			if(result > 0) {
-				redirect.addAttribute("memberId", memberId); //�����̷�Ʈ�� ������Ʈ�������ִ¹�
+				redirect.addAttribute("memberId", memberId);
 				return "redirect:/index.jsp";
 			} else {
-				// �����ϸ� ������������ �̵�
-				model.addAttribute("msg", "���������� �Ϸ���� �ʾҽ��ϴ�.");
+				model.addAttribute("msg", "데이터 조회에 실패하였습니다.");
 				return "common/serviceFailed";
 			}
 		} catch (Exception e) {
-			// ���ܹ߻��� ������������ �̵�
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			return "common/serviceFailed";
 		}
 	}
 	
-	/**
-	 * ȸ������ Controller
-	 * 
-	 */
+	//회원삭제 Controller
 	@RequestMapping(value="/member/delete.do", method=RequestMethod.GET) //a�±� get���
 	public String removeMember(
 		@RequestParam("memberId") String memberId
@@ -133,24 +123,21 @@ public class MemberController {
 		try {
 			int result = service.deleteMember(memberId);
 			if(result > 0) {
-				// �����ϸ� �����������̵� �׸��� �����ı�
+				// 성공하면 메인페이지로 가고, 세션 파괴 되어야 함.
 				return "redirect:/member/logout.do";
 			} else {
-				// ����
-				model.addAttribute("msg", "ȸ��Ż�� �Ϸ���� �ʾҽ��ϴ�.");
+				// 실패
+				model.addAttribute("msg", "회원탈퇴가 완료되지 않았습니다.");
 				return "common/serviceFailed";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg", "ȸ��Ż�� �Ϸ���� �ʾҽ��ϴ�.");
+			model.addAttribute("msg", e.getMessage());
 			return "common/serviceFailed";
 		}
 	}
 
-	/**
-	 * �α��� Controller
-	 * 
-	 */
+	//로그인 Controller
 	@RequestMapping(value="/member/login.do", method=RequestMethod.GET)
 	public String showLoginForm(Model model) {
 		
@@ -174,7 +161,7 @@ public class MemberController {
 					model.addAttribute("memberName",mOne.getMemberName());
 					return "member/myCanon";
 				} else {
-					model.addAttribute("msg", "�����Ͱ� ��ȸ���� �ʾҽ��ϴ�.");
+					model.addAttribute("msg", "데이터가 조회되지 않았습니다.");
 					return "common/serviceFailed";
 				}
 			} catch (Exception e) {
@@ -185,14 +172,11 @@ public class MemberController {
 
 	}
 	
-	/**
-	 * �α׾ƿ� Controller
-	 * 
-	 */
+	//로그아웃 Controller
 	@RequestMapping(value="/member/logout.do", method=RequestMethod.GET)
 	public String memberLogout( 
-		// SessionStatus�� �������� ������̼�(SessionAttributes)�� �����Ǵ� ������ �����Ų��.
-		// ���Ǵ� �޼ҵ�� setComplete();
+		// SessionStatus는 스프링의 어노테이션(@SessionAttributes)로 지원되는 세션을 만료시킨다.
+		// 사용된 메소드는 setComplete();
 		HttpSession sessionPrev
 	,	SessionStatus session
 	, Model model){
@@ -203,15 +187,12 @@ public class MemberController {
 			}
 			return "redirect:/index.jsp";
 		} else {
-			model.addAttribute("msg", "�α׾ƿ��� �Ϸ����� ���߽��ϴ�.");
+			model.addAttribute("msg", "로그아웃을 완료하지 못했습니다.");
 			return "common/serviceFailed";
 		}
 	}
 
-	/**
-	 * ���������� Controller
-	 * 
-	 */
+	//마이페이지 Controller
 	@RequestMapping(value="/member/mypage.do", method=RequestMethod.GET) 
 		public String showDetailMember(
 			@RequestParam("memberId") String memberId
@@ -222,7 +203,7 @@ public class MemberController {
 					model.addAttribute("member",member);
 					return "member/myPage";
 				} else {
-					model.addAttribute("msg","������ ��ȸ�� �����Ͽ����ϴ�.");
+					model.addAttribute("msg", "데이터 조회에 실패하였습니다.");
 					return "common/serviceFailed";
 				}
 			} catch (Exception e) {
