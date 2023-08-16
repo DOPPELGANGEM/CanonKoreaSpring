@@ -77,6 +77,7 @@
 	  	const selectTag = document.querySelector(".header_util_wrap");
     	console.log(selectTag);
     	selectTag.remove();
+    	
     </script> 
   </body>
 </html>
