@@ -48,6 +48,7 @@
 	         <li class="info_line">
 	           <label for="member-address">주소</label>
 	           <input type="text" id="member-address" name="memberAddress" value="${ member.memberAddress }">
+	           <input type="button" onclick="sample4_execDaumPostcode();" value="우편번호찾기">
 	         </li>
 	         <li class="info_line">
 	           <label for="member-hobby">취미</label>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,35 +30,23 @@ public class MemberController {
 	@RequestMapping(value="/member/register.do", method=RequestMethod.GET)
 	public String showRegisterForm(Model model) {
 		
-		return "member/joinMemberShip"; //jsp 파일
+		return "member/joinMemberShip";
 	}
 	
 	//doPost - 데이터 저장용
-	
 	//회원가입 Controller
 	@RequestMapping(value="/member/register.do", method=RequestMethod.POST)
 		public String registerMember(
-			HttpServletRequest request
-		, HttpServletResponse response
-		, @RequestParam("memberId") String memberId
-		, @RequestParam("memberPw") String memberPw
-		, @RequestParam("memberName") String memberName
-		, @RequestParam("memberAge") int memberAge
-		, @RequestParam("memberGender") String memberGender
-		, @RequestParam("memberEmail") String memberEmail
-		, @RequestParam("memberPhone") String memberPhone
-		, @RequestParam("memberAddress") String memberAddress
-		, @RequestParam("memberHobby") String memberHobby
+			@ModelAttribute Member member
 		, Model model) {
-		Member member = new Member(memberId, memberPw, memberName, memberAge, memberGender, memberEmail, memberPhone, memberAddress, memberHobby);
 		
 		try {
 			int result = service.registerMember(member);
 			if(result > 0) {
-				// 성공
+				// 성공시 로그인페이지로 이동
 				return "redirect:/index.jsp";
 			} else {
-				// 실패
+				// 실패시 에러페이지이동
 				return "common/serviceFailed";
 			}
 		} catch (Exception e) {
@@ -70,9 +59,9 @@ public class MemberController {
 	
 	//회원수정 Controller
 	@RequestMapping(value="/member/update.do", method=RequestMethod.GET) 
-	public String showModifyView(@RequestParam("memberId") String memberId
+	public String showModifyView(
+			@RequestParam("memberId") String memberId
 			, Model model) {
-		
 		try {
 			Member member = service.showOneById(memberId);
 			if(member != null) {
@@ -90,19 +79,11 @@ public class MemberController {
 	
 	@RequestMapping(value="/member/update.do", method=RequestMethod.POST)
 	public String modifyMember( 
-			@RequestParam("memberId") String memberId
-		,	@RequestParam("memberPw") String memberPw
-		, @RequestParam("memberEmail") String memberEmail
-		, @RequestParam("memberPhone") String memberPhone
-		, @RequestParam("memberAddress") String memberAddress
-		, @RequestParam("memberHobby") String memberHobby
-		, RedirectAttributes redirect
-		,	Model model) {
+			@ModelAttribute Member member
+			, Model model) {
 		try {
-			Member member = new Member(memberId, memberPw, memberEmail, memberPhone, memberAddress, memberHobby);
 			int result = service.updateMember(member);
 			if(result > 0) {
-				redirect.addAttribute("memberId", memberId);
 				return "redirect:/index.jsp";
 			} else {
 				model.addAttribute("msg", "데이터 조회에 실패하였습니다.");
@@ -203,7 +184,7 @@ public class MemberController {
 					model.addAttribute("member",member);
 					return "member/myPage";
 				} else {
-					model.addAttribute("msg", "데이터 조회에 실패하였습니다.");
+					model.addAttribute("msg", "마이페이지 조회 실패");
 					return "common/serviceFailed";
 				}
 			} catch (Exception e) {

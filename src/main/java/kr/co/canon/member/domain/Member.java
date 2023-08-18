@@ -121,10 +121,10 @@ public class Member {
 	
 	@Override
 	public String toString() {
-		return "罹먮끉�쉶�썝 [�븘�씠�뵒=" + memberId + ", 鍮꾨�踰덊샇=" + memberPw + ", �씠由�=" + memberName + ", �굹�씠="
-				+ memberAge + ", �꽦蹂�=" + memberGender + ", �씠硫붿씪=" + memberEmail + ", �쟾�솕踰덊샇="
-				+ memberPhone + ", 二쇱냼=" + memberAddress + ", 痍⑤��=" + memberHobby + ", �벑濡앹씪="
-				+ memberDate + ", �닔�젙�씪=" + updateDate + ", �쉶�썝�뿬遺�=" + memberYn + "]";
+		return "회원 [아이디=" + memberId + ", 비밀번호=" + memberPw + ", 이름=" + memberName + ", 나이="
+				+ memberAge + ", 성별=" + memberGender + ", 이메일=" + memberEmail + ", 핸드폰=" + memberPhone
+				+ ", 주소=" + memberAddress + ", 취미=" + memberHobby + ", 가입일=" + memberDate + ", 업데이트="
+				+ updateDate + ", 회원여부=" + memberYn + "]";
 	}
 }
 

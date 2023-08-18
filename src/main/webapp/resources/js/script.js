@@ -9,14 +9,30 @@ document.querySelector('.modal_btn_close').addEventListener('click', function(){
   document.querySelector('.modal_area_wrap').style.display = 'none';
 });
 
-/* 수정기능 */
-let modifyClick = document.querySelector("#main_modify .btn_update");
-modifyClick.addEventListener("click",function(){
-	alert("정말로 수정하시겠습니까?");
-})
+/* 회원정보 수정 전 체크 로직 */
+const updatePw = document.querySelector("#member-pw");
+const updateEmail = document.querySelector("#member-member-email");
+const updatePhone = document.querySelector("#member-phone");
+const updateAddress = document.querySelector("#member-address");
+const updateHobby = document.querySelector("#member-hobby");
 
-/* 탈퇴기능 */
-let delClick = document.querySelector("#main_modify .btn_delete");
-delClick.addEventListener("click",function(){
-	alert("정말로 탈퇴하시겠습니까");
-})
+
+
+/* joinMemberShip.jsp 우편번호 API */
+function sample4_execDaumPostcode(){
+	new daum.Postcode({
+		oncomplete : function(data) {
+			document.querySelector("#member-address").value="["+data.zonecode +"] "+data.roadAddress
+		}
+	}).open();
+}
+
+
+
+
+
+
+
+
+
+

@@ -10,7 +10,7 @@ import kr.co.canon.member.store.MemberStore;
 
 //@ServiceImpl 어노테이션
 @Service
-public class MemberServiceImpl implements MemberService { //컨트롤러 서비스 서비스impl
+public class MemberServiceImpl implements MemberService { 
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -19,7 +19,7 @@ public class MemberServiceImpl implements MemberService { //컨트롤러 서비�
 	
 	@Override
 	public int registerMember(Member member) {
-		int result = mStore.insertMember(sqlSession, member); //선언한곳은 MemberStore 그리고 MemberStoreLogic에서 오버라이딩(MemberStoreLogic은 MemberStore를 상속)
+		int result = mStore.insertMember(sqlSession, member); 
 		return result;
 	}
 
