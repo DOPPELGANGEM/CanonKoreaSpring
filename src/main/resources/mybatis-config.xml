@@ -8,8 +8,10 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="kr.co.canon.member.domain.Member" alias="Member"/>
+		<typeAlias type="kr.co.canon.notice.domain.Notice" alias="Notice"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -27,6 +27,12 @@
 	              <textarea id="noticeContents" name="noticeContents" class="noticeContents"></textarea>
 	             </div>
 	           </li>
+	           <li class="form_item">
+	             <label class="form_label" for="noticeTitle">첨부파일</label>
+	             <div class="form_field">
+	                <input type="file" id=noticeFileAdd name="noticeFileAdd">
+	             </div>
+	           </li>
 	         </ul>
 	        <div class="button_wrap">
 	          <input type="submit" class="btn_submit" value="입력하기">
