@@ -15,7 +15,17 @@
 		<result property="noticeFilelength" 	column="NOTICE_FILELENGTH" />
 	</resultMap>
 	
+	<insert id="insertNotice">
+		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject }, #{noticeContent }, #{noticeWriter}, DEFAULT, DEFAULT, #{noticeFilename }, #{noticeFilepath }, #{noticeFilelength })
+	</insert>
 	
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE_TBL;
+	</select>
+	
+	<select id="selectNoticeList" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL
+	</select>
 	
 	
 </mapper>
