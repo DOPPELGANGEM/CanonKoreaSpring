@@ -1,7 +1,9 @@
 package kr.co.canon.notice.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -96,6 +98,7 @@ public class NoticeController {
 			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
 			List<Notice> nList = service.selectNoticeList(pInfo);
 			if(nList.size() > 0) {
+				model.addAttribute("pInfo", pInfo);
 				model.addAttribute("nList", nList);
 				return "notice/list";
 			} else {
@@ -141,6 +144,20 @@ public class NoticeController {
 	 * 공지사항 search Controller
 	 * return "notice/search";
 	 */
+	@RequestMapping(value="/notice/search.do", method=RequestMethod.GET)
+	public String searchNoticeList(
+		@RequestParam("searchCondition") String searchCondition
+	, @RequestParam("searchKeyword") String searchKeyword
+	,	@RequestParam(value="page", required=false, defaultValue="1") Integer currentPage
+	, Model model	) {
+		// 2개의 값을 하나의 변수로 다루는 방법
+		// 1.VO클래스 만드는 방법
+		// 2.HashMap 사용하는 방법
+		Map<String, String> paramMap = new HashMap<String, String>();
+		
+	}
+	
+
 	
 	
 }

@@ -15,17 +15,21 @@
 		<result property="noticeFilelength" 	column="NOTICE_FILELENGTH" />
 	</resultMap>
 	
+	<!-- 공지사항 등록 -->
 	<insert id="insertNotice">
 		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject }, #{noticeContent }, #{noticeWriter}, DEFAULT, DEFAULT, #{noticeFilename }, #{noticeFilepath }, #{noticeFilelength })
 	</insert>
 	
+	<!-- 공지사항 갯수조회 -->
 	<select id="selectListCount" resultType="_int">
-		SELECT COUNT(*) FROM NOTICE_TBL;
+		SELECT COUNT(*) FROM NOTICE_TBL
 	</select>
 	
+	<!-- 공지사항 목록조회 -->
 	<select id="selectNoticeList" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE_TBL
 	</select>
+	
 	
 	
 </mapper>

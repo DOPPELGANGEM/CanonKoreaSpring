@@ -37,7 +37,7 @@ public class NoticeServiceLogic implements NoticeStore{
 	@Override
 	public List<Notice> selectNoticeList(SqlSession session, PageInfo pInfo) {
 		int limit = pInfo.getRecordCountPerPage(); // 가져오는 행의 갯수
-		int offset = (pInfo.getCurrentPage() -1)*limit; // 변하는 default 값
+		int offset = (pInfo.getCurrentPage() - 1)*limit; // 변하는 default 값
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		List<Notice> nList = session.selectList("NoticeMapper.selectNoticeList", null, rowBounds);
 		return nList;

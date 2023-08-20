@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
   <jsp:include page="/WEB-INF/views/common/head.jsp"></jsp:include>
@@ -24,24 +25,23 @@
 			</thead>
 			<tbody>
 				<c:forEach var="notice" items="${nList }" varStatus="i">
-<!-- 				list 데이터는 items에 넣었고 var에서 설정한 변수로 list 데이터에서 -->
-<!-- 				꺼낸 값을 사용하고 i의 값은 varStatus로 사용 -->
-					   <tr>
-						<td>${i.count }</td>
-						<td>${notice.noticeSubject }</td>
-						<td>${notice.noticeWriter }</td>
-						<td>
-							<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.nCreateDate }"/>
-<%-- 							${notice.nCreateDate } --%>
-						</td>
-						<td>
-							<c:if test="${!empty notice.noticeFilename }">O</c:if>
-							<c:if test="${empty notice.noticeFilename }">X</c:if>
-						</td>
-						<td>
-							<fmt:formatNumber pattern="##,###,###" value="1230000"></fmt:formatNumber>
-						</td>
-					</tr>
+				   <!-- list 데이터는 items에 넣었고 var에서 설정한 변수로 list 데이터에서 -->
+				   <!-- 꺼낸 값을 사용하고 i의 값은 varStatus로 사용  -->
+				   <tr>
+					<td>${i.count }</td>
+					<td>${notice.noticeSubject }</td>
+					<td>${notice.noticeWriter }</td>
+					<td>
+						<%-- 시 분초 다나옴  --%>
+						<%-- ${notice.nCreateDate } --%>
+						<fmt:formatDate pattern="yyyy-MM-dd" value="${notice.nCreateDate }"/>
+					</td>
+					<td>
+						<c:if test="${!empty notice.noticeFilename }">O</c:if>
+						<c:if test="${empty notice.noticeFilename }">X</c:if>
+					</td>
+					<td><fmt:formatNumber pattern="##,###,###" value="1230000"></fmt:formatNumber></td>
+				</tr>
 				</c:forEach>
 			</tbody>
 			<tfoot>
@@ -53,12 +53,11 @@
 							</c:url>
 							<a href="${pageUrl }">${p }</a>&nbsp;
 						</c:forEach>
-						
 					</td>
 				</tr>
 				<tr>
 					<td colspan="4">
-						<form action="/notice/search.kh"  method=get>
+						<form action="/notice/search.do"  method=get>
 							<select name="searchCondition">
 								<option value="all">전체</option>
 								<option value="writer">작성자</option>
