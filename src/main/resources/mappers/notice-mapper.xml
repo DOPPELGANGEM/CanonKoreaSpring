@@ -30,9 +30,38 @@
 		SELECT * FROM NOTICE_TBL
 	</select>
 	
-	<!-- 공지사항 검색 게시물 전체 갯수(동적쿼리문) -->
+	<!-- 공지사항 검색 게시물 전체 갯수 (동적쿼리문) -->
 	<select id="selectListByKeywordCount" resultType="_int">
-		
+		SELECT COUNT(*) FROM NOTICE_TBL
+		<if test="searchCondition == 'all'">
+			WHERE NOTICE_WRITER LIKE '%' ||#{searchKeyword}|| '%' OR NOTICE_SUBJECT LIKE '%' ||#{searchKeyword}|| '%' OR NOTICE_CONTENT LIKE '%' ||#{searchKeyword}|| '%'
+		</if>
+		<if test="searchCondition == 'writer'">
+			WHERE NOTICE_WRITER LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		<if test="searchCondition == 'title'">
+			WHERE NOTICE_SUBJECT LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		<if test="searchCondition == 'content'">
+			WHERE NOTICE_CONTENT LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+	</select>
+	
+	<!-- 공지사항 조건에 따라 키워드로 검색 (동적쿼리문) -->
+	<select id="selectNoticeByKeyword" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL
+		<if test="searchCondition == 'all'">
+			WHERE NOTICE_WRITER LIKE '%' ||#{searchKeyword}|| '%' OR NOTICE_SUBJECT LIKE '%' ||#{searchKeyword}|| '%' OR NOTICE_CONTENT LIKE '%' ||#{searchKeyword}|| '%'
+		</if>
+		<if test="searchCondition == 'writer'">
+			WHERE NOTICE_WRITER LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		<if test="searchCondition == 'title'">
+			WHERE NOTICE_SUBJECT LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
+		<if test="searchCondition == 'content'">
+			WHERE NOTICE_CONTENT LIKE '%'|| #{searchKeyword} ||'%'
+		</if>
 	</select>
 	
 </mapper>

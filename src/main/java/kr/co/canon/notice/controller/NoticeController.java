@@ -111,7 +111,7 @@ public class NoticeController {
 			model.addAttribute("msg", "관리자에게 문의해주세요.");
 			model.addAttribute("error", e.getMessage());
 			model.addAttribute("url", "/index.jsp");
-			return "common/errorPage";
+			return "common/serviceFailed";
 		}
 	}
 	
@@ -154,7 +154,7 @@ public class NoticeController {
 		// 1.VO클래스 만드는 방법
 		// 2.HashMap 사용하는 방법
 		Map<String, String> paramMap = new HashMap<String, String>();
-		paramMap.put("searchCondition", searchCondition);
+		paramMap.put("searchCondition", searchCondition); // paramMap.put(key,value)
 		paramMap.put("searchKeyword", searchKeyword);
 		int totalCount = service.getListCount(paramMap);
 		PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
@@ -172,7 +172,7 @@ public class NoticeController {
 			model.addAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
 			model.addAttribute("error", "공지사항 제목으로 조회 실패");
 			model.addAttribute("url", "/index.jsp");
-			return "common/errorPage";
+			return "common/serviceFailed";
 		}
 	}
 	

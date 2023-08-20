@@ -41,7 +41,7 @@ public class NoticeServiceLogic implements NoticeStore{
 	// 공지사항 검색 게시물 전체 갯수 StoreLogic
 	@Override
 	public int selectListCount(SqlSession session, Map<String, String> paramMap) {
-		int result = session.selectOne("NoticeMapper.selectListByKeywordCount",paramMap);
+		int result = session.selectOne("NoticeMapper.selectListByKeywordCount", paramMap);
 		return result;
 	}
 	
