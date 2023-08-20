@@ -30,7 +30,10 @@
 		SELECT * FROM NOTICE_TBL
 	</select>
 	
-	
+	<!-- 공지사항 검색 게시물 전체 갯수(동적쿼리문) -->
+	<select id="selectListByKeywordCount" resultType="_int">
+		
+	</select>
 	
 </mapper>
 

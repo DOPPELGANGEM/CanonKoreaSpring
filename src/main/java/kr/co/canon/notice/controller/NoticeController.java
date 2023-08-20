@@ -146,18 +146,62 @@ public class NoticeController {
 	 */
 	@RequestMapping(value="/notice/search.do", method=RequestMethod.GET)
 	public String searchNoticeList(
-		@RequestParam("searchCondition") String searchCondition
-	, @RequestParam("searchKeyword") String searchKeyword
+		@RequestParam("searchCondition") String searchCondition //noticeMapper if test="" 이부분
+	, @RequestParam("searchKeyword") String searchKeyword //noticeMapper if test="" 아래 쿼리문부분
 	,	@RequestParam(value="page", required=false, defaultValue="1") Integer currentPage
 	, Model model	) {
 		// 2개의 값을 하나의 변수로 다루는 방법
 		// 1.VO클래스 만드는 방법
 		// 2.HashMap 사용하는 방법
 		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("searchCondition", searchCondition);
+		paramMap.put("searchKeyword", searchKeyword);
+		int totalCount = service.getListCount(paramMap);
+		PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
+		// put() 메소드를 사용해서 key-value 설정을 하는데
+		// key값(파란색)이 mapper.xml에서 사용된다!!
+		List<Notice> searchList = service.searchNoticesByKeyword(pInfo, paramMap);
 		
+		if(!searchList.isEmpty()) {
+			model.addAttribute("searchCondition", searchCondition);
+			model.addAttribute("searchKeyword", searchKeyword);
+			model.addAttribute("pInfo", pInfo);
+			model.addAttribute("sList", searchList);
+			return "notice/search";
+		} else {
+			model.addAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
+			model.addAttribute("error", "공지사항 제목으로 조회 실패");
+			model.addAttribute("url", "/index.jsp");
+			return "common/errorPage";
+		}
 	}
 	
 
-	
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
