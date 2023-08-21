@@ -1,14 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>공지사항 목록</title>
-	</head>
-	<body>
-		<h1>공지사항 목록</h1>
+  <jsp:include page="/WEB-INF/views/common/head.jsp"></jsp:include>
+  <body>
+  	<!-- 헤더 -->
+    <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
+    <!-- 메인 -->
+	<main class="main main_notice" id="main_detail">
+      <div class="banner_wrap">
+        <h2>공지사항</h2>
+      </div>
 		<table>
 			<thead>
 				<tr>
@@ -76,5 +79,16 @@
 				</tr>
 			</tfoot>
 		</table>
+		</main>
+    <!-- 푸터 -->
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+    <script>
+// 	    const deleteCheck = () => {
+// 	    	const NoticeNo = '${notice.noticeNo}';
+// 	    	if(confirm("정말로 삭제하시겠습니까?")) {
+// 	    		location.href = "/notice/delete.do?noticeNo="+NoticeNo;
+// 	    	}
+// 	    }	
+    </script> 
 	</body>
 </html>

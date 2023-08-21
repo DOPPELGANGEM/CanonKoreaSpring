@@ -11,7 +11,7 @@
 		<typeAlias type="kr.co.canon.notice.domain.Notice" alias="Notice"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/member/member-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
 	</mappers>
 </configuration>

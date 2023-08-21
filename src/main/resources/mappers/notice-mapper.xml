@@ -17,7 +17,7 @@
 	
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice">
-		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject }, #{noticeContent }, #{noticeWriter}, DEFAULT, DEFAULT, #{noticeFilename }, #{noticeFilepath }, #{noticeFilelength })
+		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject }, #{noticeContent }, #{noticeWriter }, DEFAULT, DEFAULT, #{noticeFilename }, #{noticeFilepath }, #{noticeFilelength })
 	</insert>
 	
 	<!-- 공지사항 갯수조회 -->
