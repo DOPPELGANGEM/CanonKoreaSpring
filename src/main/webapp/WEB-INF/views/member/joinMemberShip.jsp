@@ -44,10 +44,10 @@
               <label for="member-phone">전화번호</label>
               <input type="text" id="member-phone" name="memberPhone">
             </li>
-            <li class="info_line">
+            <li class="info_line info_address">
               <label for="member-address">주소</label>
               <input type="text" id="member-address" name="memberAddress">
-              <input type="button" onclick="sample4_execDaumPostcode();" value="우편번호찾기">
+              <input type="button" class="address_btn" onclick="sample4_execDaumPostcode();" value="주소 검색">
             </li>
             <li class="info_line">
               <label for="member-hobby">취미</label>
