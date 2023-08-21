@@ -19,7 +19,7 @@
 	           </li>
 	           <li class="info_line">
 	             <label for="member-pw">비밀번호</label>
-	             <input type="password" id="member-pw" name="memberPw">
+	             <input type="password" id="member-pw" name="memberPw" value="${member.memberPw}" readonly>
 	           </li>
 	           <li class="info_line">
 	             <label for="member-name">이름</label>

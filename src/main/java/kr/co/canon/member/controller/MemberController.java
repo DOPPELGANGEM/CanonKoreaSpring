@@ -82,11 +82,18 @@ public class MemberController {
 			@ModelAttribute Member member
 			, Model model) {
 		try {
-			int result = service.updateMember(member);
-			if(result > 0) {
-				return "redirect:/index.jsp";
-			} else {
-				model.addAttribute("msg", "데이터 조회에 실패하였습니다.");
+			Member confirmMember = service.selectCountCheck(member); // 회원정보 수정 전 체크 로직
+			if (confirmMember == null) {
+				int result = service.updateMember(member);
+				if(result > 0) {
+					return "redirect:/index.jsp";
+				} else {
+					model.addAttribute("msg", "회원정보 수정 실패");
+					return "common/serviceFailed";
+				}
+			}	else {
+				model.addAttribute("msg", "회원정보가같습니다..다시수정해주세요");
+				model.addAttribute("url", "/member/update.do?memberId="+member.getMemberId());
 				return "common/serviceFailed";
 			}
 		} catch (Exception e) {

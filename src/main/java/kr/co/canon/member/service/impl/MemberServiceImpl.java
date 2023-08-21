@@ -45,6 +45,12 @@ public class MemberServiceImpl implements MemberService {
 	public Member showOneById(String memberId) {
 		Member member = mStore.selectOneById(sqlSession, memberId);
 		return member;
+	}
+
+	@Override
+	public Member selectCountCheck(Member member) {
+		Member mOne = mStore.selectCountCheck(sqlSession, member);
+		return mOne;
 	} 
 
 }

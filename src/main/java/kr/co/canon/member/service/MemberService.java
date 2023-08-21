@@ -17,7 +17,7 @@ public interface MemberService {
 	 * @return
 	 */
 	public int updateMember(Member member);
-
+	
 	/**
 	 * 회원 삭제(탈퇴) Service
 	 * @param memberId
@@ -38,6 +38,13 @@ public interface MemberService {
 	 * @return
 	 */
 	public Member showOneById(String memberId);
+
+	/**
+	 * 회원정보 수정 전 체크 로직 Service
+	 * @param confirmMember
+	 * @return
+	 */
+	public Member selectCountCheck(Member member);
 	
 	
 	

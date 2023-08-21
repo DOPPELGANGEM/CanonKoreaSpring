@@ -40,5 +40,11 @@ public class MemberStoreLogic implements MemberStore {
 		return member;
 	}
 
+	@Override
+	public Member selectCountCheck(SqlSession sqlSession, Member member) {
+		Member mOne = sqlSession.selectOne("MemberMapper.selectCountCheck", member);
+		return mOne;
+	}
+
 	
 }

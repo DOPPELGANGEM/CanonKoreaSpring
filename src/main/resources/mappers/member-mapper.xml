@@ -44,5 +44,9 @@
 		SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId }
 	</select>
 	
+	<!-- 회원 수정여부 조회 -->
+	<select id="selectCountCheck" resultMap="memberResultMap">
+		SELECT * FROM  MEMBER_TBL WHERE MEMBER_PW = #{memberPw } AND MEMBER_EMAIL = #{memberEmail } AND MEMBER_PHONE= #{memberPhone } AND MEMBER_ADDRESS= #{memberAddress } AND MEMBER_HOBBY=#{memberHobby } AND MEMBER_ID=#{memberId } AND MEMBER_YN = 'Y'
+	</select>
 	
 </mapper>

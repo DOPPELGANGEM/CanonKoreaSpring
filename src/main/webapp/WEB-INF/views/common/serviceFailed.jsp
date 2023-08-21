@@ -4,9 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서비스 결과 실패</title>
+<title>서비스결과 실패</title>
 </head>
 <body>
-	<h1>서비스 결과 실패!</h1>
+	<h1>${error }</h1>
+	<a href="${url }">페이지 이동</a>
+	<script>
+		const msg = "${msg }";
+		if(msg != "") alert(msg);
+	</script>
 </body>
 </html>
