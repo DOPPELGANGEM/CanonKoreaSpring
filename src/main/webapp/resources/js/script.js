@@ -11,8 +11,8 @@ const loginPwInput = document.querySelector(".canon_input_pw");
 const loginBtn = document.querySelector(".login_btn");
 loginBtn.addEventListener("click", function(){
 	//alert("clicked");
-	if(loginIdInput.value === "" || loginPwInput.value === "" ) {
-		alert("id와 pw 둘중 하나 값은 무조건 입력하십시오");
+	if(loginIdInput.value === "" && loginPwInput.value === "" ) {
+		alert("id와 pw 값 모두 입력해주세요!!");
 	} else {
 		alert("로그인 확인중...");
 	}
