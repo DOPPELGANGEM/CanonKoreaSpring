@@ -41,8 +41,8 @@
 						</c:forEach>
 	          		</tbody>
 	          		<tfoot>
-						<tr> 
-							<td colspan="5">
+						<tr class="nav_area"> 
+							<td colspan="6">
 								<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
 									<c:url var="pageUrl" value="/notice/list.do">
 										<c:param name="page" value="${p }"></c:param>
@@ -51,17 +51,17 @@
 								</c:forEach>
 							</td>
 						</tr>
-						<tr>
-							<td colspan="4">
+						<tr class="search_area">
+							<td colspan="6">
 								<form action="/notice/search.do"  method=get>
-									<select name="searchCondition">
+									<select name="searchCondition" class="search_condition">
 										<option value="all">전체</option>
 										<option value="writer">작성자</option>
 										<option value="title">제목</option>
 										<option value="content">내용</option>
 									</select>
-									<input type="text" name="searchKeyword" placeholder="검색어를 입력하세요">
-									<input type="submit" value="검색">
+									<input type="text" name="searchKeyword" placeholder="검색어를 입력하세요" class="search_keyword">
+									<input type="submit" value="검색" class="search_btn">
 								</form>
 							</td>
 						</tr>

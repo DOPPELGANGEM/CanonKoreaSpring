@@ -80,9 +80,12 @@ public class MemberController {
 	@RequestMapping(value="/member/update.do", method=RequestMethod.POST)
 	public String modifyMember( 
 			@ModelAttribute Member member
+		// 모델에 키와 값으로 데이터를 넣어주면 jsp에서 꺼내서 사용가능
 			, Model model) {
 		try {
 			Member confirmMember = service.selectCountCheck(member); // 회원정보 수정 전 체크 로직
+//			System.out.println("memberId값 : "+member);
+//			System.out.println("model값 : "+model); 
 			if (confirmMember == null) {
 				int result = service.updateMember(member);
 				if(result > 0) {
@@ -170,9 +173,6 @@ public class MemberController {
 	, Model model){
 		if(session != null) {
 			session.setComplete();
-			if(session.isComplete()) {
-				//���Ǹ��� ��ȿ��üũ
-			}
 			return "redirect:/index.jsp";
 		} else {
 			model.addAttribute("msg", "로그아웃을 완료하지 못했습니다.");
@@ -183,7 +183,9 @@ public class MemberController {
 	//마이페이지 Controller
 	@RequestMapping(value="/member/mypage.do", method=RequestMethod.GET) 
 		public String showDetailMember(
+			// 쿼리스트링 받기 위해서 RequestParam 써줌
 			@RequestParam("memberId") String memberId
+			// 모델에 키와 값으로 데이터를 넣어주면 jsp에서 꺼내서 사용가능
 			,Model model){
 			try {
 				Member member = service.showOneById(memberId);

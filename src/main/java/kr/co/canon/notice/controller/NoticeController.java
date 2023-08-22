@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -140,6 +141,45 @@ public class NoticeController {
 		
 	}
 	
+//	public String generatePageNavi(SqlSession session, int currentPage) {
+//		
+//		// 전체 게시물의 갯수
+//		int totalCount = getTotalCount(session);
+//		int recordCountPerPage = 10;
+//		int naviCountPerPage = 10;
+//		int totalNaviCount;
+//		if(totalCount % recordCountPerPage > 0) {
+//			totalNaviCount = totalCount / recordCountPerPage + 1;
+//		} else {
+//			totalNaviCount = totalCount / recordCountPerPage;
+//		}
+//		
+//		int startNavi = ((currentPage-1)/naviCountPerPage) * naviCountPerPage + 1; // (2-1)*5 + 1 ->6
+//		int endNavi = startNavi + naviCountPerPage - 1;
+//		if(endNavi > totalNaviCount) {
+//			endNavi = totalNaviCount;
+//		}
+//		StringBuffer result = new StringBuffer();
+//		boolean needPrev = true;
+//		boolean needNext = true;
+//		if(startNavi != 1) {
+//			result.append("<a href='/notice/list.do?currentPage="+(startNavi-1)+"'><p><span>[이전]</span></p></a>");
+//		}
+//		for(int i=startNavi; i<=endNavi; i++) {
+//			result.append("<a href='/notice/list.do?currentPage="+i+"'>"+i+"</a>");
+//		}
+//		if(endNavi != totalNaviCount) {
+//			result.append("<a href='/notice/list.do?currentPage="+(endNavi + 1)+"'><p><span>[다음]</span></p></a>");
+//		}
+//		return result.toString();
+//		
+//	}
+//	
+//	private int getTotalCount(SqlSession session) {
+//		int totalCount = session.selectOne("NoticeMapper.getTotalCount");
+//		return totalCount;
+//	}
+
 	/**
 	 * 공지사항 search Controller
 	 * return "notice/search";
