@@ -64,10 +64,5 @@
 		</if>
 	</select>
 	
-	<!-- 공지사항 페이징 조회(시도중) -->
-	<select id="getTotalCount" resultType="_int"><!-- 컬럼의갯수가한개이고 숫자이면 int형식으로 쓰기 가능 -->
- 		SELECT COUNT(*) FROM NOTICE_TBL
- 	</select>
-	
 </mapper>
 

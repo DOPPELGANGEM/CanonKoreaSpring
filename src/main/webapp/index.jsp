@@ -44,7 +44,8 @@
             </div>
           </div>
           <div class="big_btn_wrap">
-            <a href="javascript:void(0)" class="login_btn" onclick="chk_form()">로그인</a>
+         	<input type="submit" value="로그인" class="login_btn">
+<!--             <a href="javascript:void(0)" class="login_btn" onclick="chk_form()">로그인</a> -->
           </div>
         </form>
         <p class="add_txt">개인정보수정 페이지에서 SNS 로그인 연동 설정을 하시면 재방문 시 간편하게 로그인 가능합니다.</p>

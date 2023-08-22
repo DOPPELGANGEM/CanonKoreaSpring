@@ -31,7 +31,10 @@
 							   <!-- list 데이터는 items에 넣었고 var에서 설정한 변수로 list 데이터에서 -->
 							   <!-- 꺼낸 값을 사용하고 i의 값은 varStatus로 사용 -->
 								<td>${i.count }</td>
-								<td>${notice.noticeSubject }</td>
+								<td>
+									<!-- <a href="/notice/detail.do?noticeNo=${notice.noticeNo}">${notice.noticeSubject }</a> -->
+									${notice.noticeSubject }
+								</td>
 								<td>${notice.noticeWriter }</td>
 								<td>
 									<!-- 시 분초 다나옴 ${notice.nCreateDate } --> 
@@ -48,12 +51,13 @@
 	          		<tfoot>
 						<tr class="nav_area"> 
 							<td colspan="6">
-								<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
-									<c:url var="pageUrl" value="/notice/list.do">
-										<c:param name="page" value="${p }"></c:param>
-									</c:url>
-									<a href="${pageUrl }">${p }</a>&nbsp;
-								</c:forEach>
+<%-- 								<c:if test="${pInfo.startNavi > pInfo.naviCountPerPage }"><a href="/notice/list.do?currentPage="+(startNavi-1)+"'>[이전]</a></c:if> --%>
+									<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
+										<c:url var="pageUrl" value="/notice/list.do">
+											<c:param name="page" value="${p }"></c:param>
+										</c:url>
+										<a href="${pageUrl }">${p }</a>&nbsp;
+									</c:forEach>
 							</td>
 						</tr>
 						<tr class="search_area">
