@@ -36,7 +36,7 @@
 	          <li class="form_item form_file">
 	          	 <!-- String으로 받을 수 없고 변환작업이필요하다. -->
 	            <label class="form_label" for="noticeFileAdd">첨부파일</label> 
-	            	<input type="file" id="noticeFileAdd" class="noticeFileAdd" name="noticeFileAdd">
+	            <input type="file" id="noticeFileAdd" class="noticeFileAdd" name="noticeFileAdd">
 	          </li>
 	        </ul>
 	       <div class="button_wrap">

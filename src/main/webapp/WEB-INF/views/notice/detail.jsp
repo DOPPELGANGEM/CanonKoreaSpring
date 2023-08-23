@@ -40,21 +40,12 @@
 	       </li>
         </ul>
        	<div class="button_wrap">
-	      	<a class="btn btn_2" href="/notice/modify.do?noticeNo=${notice.noticeNo}">수정하기</a><br>
-	    	<a class="btn btn_3" href="javascript:void(0)" onclick="deleteCheck();">삭제하기</a> 
-        	<a class="btn btn_1" href="/notice/list.do">목록으로</a>
+	      	<a class="btn btn_1" href="/notice/modify.do?noticeNo=${notice.noticeNo}">수정페이지 이동</a><br>
+        	<a class="btn btn_2" href="/notice/list.do">목록으로 이동</a>
    		</div>
       </div>
    </main>
     <!-- 푸터 -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
-    <script>
-	    const deleteCheck = () => {
-	    	const NoticeNo = '${notice.noticeNo}';
-	    	if(confirm("정말로 삭제하시겠습니까?")) {
-	    		location.href = "/notice/delete.do?noticeNo="+NoticeNo;
-	    	}
-	    }	
-    </script>  
   </body>
 </html>

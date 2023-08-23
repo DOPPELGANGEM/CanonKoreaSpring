@@ -176,8 +176,10 @@ body { font-family: 'Noto Sans KR','Roboto', sans-serif;}
 #main_detail .form_field input {  width: 930px;height: 42px;display: block;padding: 0 10px; font-size: 16px; border: 1px solid #e6e6e6; box-sizing: border-box; border-radius: 4px; } 
 #main_detail .form_field input:focus { border:2px solid #000; }
 #main_detail .noticeContent { resize: none; width:930px; height: 240px; border: solid 1px #e6e6e6; box-sizing: border-box; font-size: 16px; padding:10px; border-radius: 4px; }
-#main_detail .button_wrap { text-align: center; }
-#main_detail .btn_submit { width:180px; height:60px; background:#dc000c; font-size: 18px; border:none; border-radius:30px; color:#fff; font-weight: 700; cursor: pointer; }
+#main_detail .button_wrap { display:flex; justify-content: center; }
+#main_detail .button_wrap .btn { width: 180px; height: 60px; text-align:center; font-size: 18px; line-height: 60px;  border-radius: 30px; font-weight: 700; cursor: pointer; }
+#main_detail .button_wrap .btn_1 { background:#dc000c; color:#fff; border: 1px solid #dc000c; margin:0 4px 0 0;  }
+#main_detail .button_wrap .btn_2 { background:#000c; color:#fff; border:none; }
 
 /* 공지사항 수정 */
 #main_noticeModify .banner_wrap { position: relative; background:url("/resources/images/notice/notice_img.png") no-repeat; height: 340px; }
@@ -190,8 +192,10 @@ body { font-family: 'Noto Sans KR','Roboto', sans-serif;}
 #main_noticeModify .form_field input {  width: 930px;height: 42px;display: block;padding: 0 10px; font-size: 16px; border: 1px solid #e6e6e6; box-sizing: border-box; border-radius: 4px; } 
 #main_noticeModify .form_field input:focus { border:2px solid #000; }
 #main_noticeModify .noticeContent { resize: none; width:930px; height: 240px; border: solid 1px #e6e6e6; box-sizing: border-box; font-size: 16px; padding:10px; border-radius: 4px; }
-#main_noticeModify .button_wrap { text-align: center; }
-#main_noticeModify .btn_submit { width:180px; height:60px; background:#dc000c; font-size: 18px; border:none; border-radius:30px; color:#fff; font-weight: 700; cursor: pointer; }
+#main_noticeModify .button_wrap { display:flex; justify-content: center; }
+#main_noticeModify .button_wrap .btn { width: 180px; height: 60px; text-align:center; font-size: 18px; line-height: 60px;  border-radius: 30px; font-weight: 700; cursor: pointer; }
+#main_noticeModify .button_wrap .btn_1 { background:#dc000c; color:#fff; border: 1px solid #dc000c; margin:0 4px 0 0;  }
+#main_noticeModify .button_wrap .btn_2 { background:#000c; color:#fff; border:none; }
 
 
 
