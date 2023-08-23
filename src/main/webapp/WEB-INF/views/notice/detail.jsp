@@ -10,25 +10,40 @@
     <!-- 메인 -->
 	<main class="main main_notice" id="main_detail">
       <div class="banner_wrap">
-        <h2>공지사항</h2>
+        <h2>공지사항 상세</h2>
       </div>
       <div class="container">
       	<h2 class="tit_txt">공지사항 상세</h2>
-        <form action="/notice/detail.do" method="post">
-           <div class="detail_title">
-             <h3>번호 : ${notice.noticeNo}</h3>
-             <p class="tit_tit">제목 : ${notice.noticeTitle}</p>
-             <span>등록일 : ${notice.regDate}</span>
-           </div>
-           <div class="det_cotent">
-             <p>${notice.noticeContents}</p>
-           </div>
-        	<div class="button_wrap">
-	        	<a class="btn btn_1" href="/notice/list.do">목록</a>
-		      	<a class="btn btn_2" href="/notice/modify.do?noticeNo=${notice.noticeNo}">수정하기</a><br>
-		    	<a class="btn btn_3" href="javascript:void(0)" onclick="deleteCheck();">삭제하기</a> 
-       		</div>
-         </form>
+		<ul class="form_wrap">
+          <li class="form_item">
+            <label class="form_label" for="noticeSubject">제목</label>
+            <div class="form_field">
+               <input type="text" id="noticeSubject" name="noticeSubject" value="${notice.noticeSubject }">
+            </div>
+          </li>
+          <li class="form_item">
+            <label class="form_label" for="noticeWriter">작성자</label>
+            <div class="form_field">
+               <input type="text" id="noticeWriter" name="noticeWriter" value="${notice.noticeWriter }" readonly>
+            </div>
+          </li>
+          <li class="form_item">
+            <label class="form_label" for="noticeContent">내용</label>
+            <div class="form_field">
+             <textarea class="noticeContent" id="noticeContent" name="noticeContent">${notice.noticeContent}</textarea>
+            </div>
+          </li>
+          <li class="form_item form_file">
+	          <label class="form_label" for="noticeFileAdd">첨부파일</label> 
+	          <a href="../resources/noticeFileUpload/${notice.noticeFileRename }" download>${notice.noticeFilename}</a>
+<%-- 	          <img alt="첨부파일" src="../resources/noticeFileUpload/${notice.noticeFilename}"> --%>
+	       </li>
+        </ul>
+       	<div class="button_wrap">
+	      	<a class="btn btn_2" href="/notice/modify.do?noticeNo=${notice.noticeNo}">수정하기</a><br>
+	    	<a class="btn btn_3" href="javascript:void(0)" onclick="deleteCheck();">삭제하기</a> 
+        	<a class="btn btn_1" href="/notice/list.do">목록으로</a>
+   		</div>
       </div>
    </main>
     <!-- 푸터 -->

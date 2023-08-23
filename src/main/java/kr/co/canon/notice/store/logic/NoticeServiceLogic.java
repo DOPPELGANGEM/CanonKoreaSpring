@@ -21,6 +21,13 @@ public class NoticeServiceLogic implements NoticeStore{
 		return result;
 	}
 
+	//공지사항 수정 StoreLogic
+	@Override
+	public int updateNotice(SqlSession session, Notice notice) {
+		int result = session.update("NoticeMapper.updateNotice", notice);
+		return result;
+	}
+
 	// 공지사항 갯수 조회 StoreLogic
 	@Override
 	public int selectListCount(SqlSession session) {
@@ -53,6 +60,13 @@ public class NoticeServiceLogic implements NoticeStore{
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		List<Notice> searchList = session.selectList("NoticeMapper.selectNoticeByKeyword", paramMap, rowBounds);
 		return searchList;
+	}
+
+	// 공지사항 번호로 조회 StoreLogic
+	@Override
+	public Notice selectNoticeByNo(SqlSession session, Integer noticeNo) {
+		Notice notice = session.selectOne("NoticeMapper.selectNoticeByNo", noticeNo);
+		return notice;
 	}
 	
 }

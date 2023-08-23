@@ -165,6 +165,33 @@ body { font-family: 'Noto Sans KR','Roboto', sans-serif;}
 #main_searchlist .table_wrap .tbody_area tr { border-bottom:1px solid #e6e6e6; height:68px; }
 #main_searchlist .table_wrap .tbody_area td { text-align:center; }
 
+/* 공지사항 상세 */
+#main_detail .banner_wrap { position: relative; background:url("/resources/images/notice/notice_img.png") no-repeat; height: 340px; }
+#main_detail .banner_wrap h2 { position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); font-size: 40px; color:#fff;  }
+#main_detail .tit_txt { font-size: 32px; text-align: center; padding:30px 0; }
+#main_detail .form_wrap { padding: 40px 0 30px; }
+#main_detail .form_item { display: flex; margin-bottom:26px;  }
+#main_detail .form_file { display:flex; align-items: self-end; }
+#main_detail .form_label { width: 160px; font-size: 18px; text-align: center; padding: 10px 0 0; }
+#main_detail .form_field input {  width: 930px;height: 42px;display: block;padding: 0 10px; font-size: 16px; border: 1px solid #e6e6e6; box-sizing: border-box; border-radius: 4px; } 
+#main_detail .form_field input:focus { border:2px solid #000; }
+#main_detail .noticeContent { resize: none; width:930px; height: 240px; border: solid 1px #e6e6e6; box-sizing: border-box; font-size: 16px; padding:10px; border-radius: 4px; }
+#main_detail .button_wrap { text-align: center; }
+#main_detail .btn_submit { width:180px; height:60px; background:#dc000c; font-size: 18px; border:none; border-radius:30px; color:#fff; font-weight: 700; cursor: pointer; }
+
+/* 공지사항 수정 */
+#main_noticeModify .banner_wrap { position: relative; background:url("/resources/images/notice/notice_img.png") no-repeat; height: 340px; }
+#main_noticeModify .banner_wrap h2 { position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); font-size: 40px; color:#fff;  }
+#main_noticeModify .tit_txt { font-size: 32px; text-align: center; padding:30px 0; }
+#main_noticeModify .form_wrap { padding: 40px 0 30px; }
+#main_noticeModify .form_item { display: flex; margin-bottom:26px;  }
+#main_noticeModify .form_file { display:flex; align-items: self-end; }
+#main_noticeModify .form_label { width: 160px; font-size: 18px; text-align: center; padding: 10px 0 0; }
+#main_noticeModify .form_field input {  width: 930px;height: 42px;display: block;padding: 0 10px; font-size: 16px; border: 1px solid #e6e6e6; box-sizing: border-box; border-radius: 4px; } 
+#main_noticeModify .form_field input:focus { border:2px solid #000; }
+#main_noticeModify .noticeContent { resize: none; width:930px; height: 240px; border: solid 1px #e6e6e6; box-sizing: border-box; font-size: 16px; padding:10px; border-radius: 4px; }
+#main_noticeModify .button_wrap { text-align: center; }
+#main_noticeModify .btn_submit { width:180px; height:60px; background:#dc000c; font-size: 18px; border:none; border-radius:30px; color:#fff; font-weight: 700; cursor: pointer; }
 
 
 
@@ -172,20 +199,15 @@ body { font-family: 'Noto Sans KR','Roboto', sans-serif;}
 
 
 
-
-
-
-
-
-	/* tablet */
-	@media screen and (min-width: 769px) and (max-width: 1440px){
-		
-	}
+/* tablet */
+@media screen and (min-width: 769px) and (max-width: 1440px){
 	
-	
-	/* mobile */
-	@media screen and (max-width: 768px) {
-	}
+}
+
+
+/* mobile */
+@media screen and (max-width: 768px) {
+}
 				
 		
 

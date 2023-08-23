@@ -29,6 +29,13 @@ public class NoticeServiceImpl implements NoticeService {
 		return result;
 	}
 
+	//공지사항 수정 ServiceImpl
+	@Override
+	public int updateNotice(Notice notice) {
+		int result = nStore.updateNotice(session, notice);
+		return result;
+	}
+
 	// 공지사항 전체 갯수 조회 ServiceImpl
 	@Override
 	public int getListCount() {
@@ -55,6 +62,13 @@ public class NoticeServiceImpl implements NoticeService {
 	public List<Notice> searchNoticesByKeyword(PageInfo pInfo, Map<String, String> paramMap) {
 		List<Notice> searchList = nStore.searchNoticesByKeyword(session, pInfo, paramMap);
 		return searchList;
+	}
+
+	// 공지사항 번호로 조회 ServiceImpl
+	@Override
+	public Notice selectNoticeByNo(Integer noticeNo) {
+		Notice notice = nStore.selectNoticeByNo(session, noticeNo);
+		return notice;
 	}
 
 	
