@@ -51,12 +51,24 @@
 	          		<tfoot>
 						<tr class="nav_area"> 
 							<td colspan="6">
+								<c:if test="${pInfo.startNavi != 1}">
+									<c:url var="prevUrl" value="/notice/list.do">
+										<c:param name="page" value="${pInfo.startNavi-1}"></c:param>
+									</c:url>
+									<a href="${prevUrl }" class="nav_link prev_link"><p><span>[이전]</span></p></a></a>
+								</c:if>
 								<c:forEach begin="${pInfo.startNavi }" end="${pInfo.endNavi }" var="p">
 									<c:url var="pageUrl" value="/notice/list.do">
 										<c:param name="page" value="${p }"></c:param>
 									</c:url>
 									<a href="${pageUrl }">${p }</a>&nbsp;
 								</c:forEach>
+								<c:if test="${pInfo.endNavi != naviTotalCount}">
+									<c:url var="nextUrl" value="/notice/list.do">
+										<c:param name="page" value="${pInfo.endNavi+1}"></c:param>
+									</c:url>
+									<a href="${nextUrl }" class="nav_link next_link"><p><span>[다음]</span></p></a></a>
+								</c:if>
 							</td>
 						</tr>
 						<tr class="search_area">

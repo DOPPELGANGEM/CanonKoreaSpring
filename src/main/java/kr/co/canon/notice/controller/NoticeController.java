@@ -155,6 +155,8 @@ public class NoticeController {
 			int totalCount = service.getListCount();
 			PageInfo pInfo = this.getPageInfo(currentPage, totalCount);
 			List<Notice> nList = service.selectNoticeList(pInfo);
+			System.out.println("pInfo값:" + pInfo);
+			System.out.println("nList값:" + nList);
 			if(nList.size() > 0) {
 				model.addAttribute("pInfo", pInfo);
 				model.addAttribute("nList", nList);

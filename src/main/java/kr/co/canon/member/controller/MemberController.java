@@ -182,26 +182,26 @@ public class MemberController {
 
 	//마이페이지 Controller
 	@RequestMapping(value="/member/mypage.do", method=RequestMethod.GET) 
-		public String showDetailMember(
-			// 쿼리스트링 받기 위해서 RequestParam 써줌
-			@RequestParam("memberId") String memberId
-			// 모델에 키와 값으로 데이터를 넣어주면 jsp에서 꺼내서 사용가능
-			,Model model){
-			try {
-				Member member = service.showOneById(memberId);
-				if(member != null) {
-					model.addAttribute("member",member);
-					return "member/myPage";
-				} else {
-					model.addAttribute("msg", "마이페이지 조회 실패");
-					return "common/serviceFailed";
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				model.addAttribute("msg", e.getMessage());
+	public String showDetailMember(
+		// 쿼리스트링 받기 위해서 RequestParam 써줌
+		@RequestParam("memberId") String memberId
+		// 모델에 키와 값으로 데이터를 넣어주면 jsp에서 꺼내서 사용가능
+		,Model model){
+		try {
+			Member member = service.showOneById(memberId);
+			if(member != null) {
+				model.addAttribute("member",member);
+				return "member/myPage";
+			} else {
+				model.addAttribute("msg", "마이페이지 조회 실패");
 				return "common/serviceFailed";
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/serviceFailed";
 		}
+	}
 	
 	
 }

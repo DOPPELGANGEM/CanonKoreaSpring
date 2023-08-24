@@ -18,9 +18,9 @@
 	
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice">
-		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject },#{noticeContent },#{noticeWriter}, DEFAULT, DEFAULT, #{noticeFilename }, #{noticeFileRename }, #{noticeFilepath }, #{noticeFilelength })
+		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICE_NO.NEXTVAL, #{noticeSubject },#{noticeContent },#{noticeWriter }, DEFAULT, DEFAULT, #{noticeFilename }, #{noticeFileRename }, #{noticeFilepath }, #{noticeFilelength })
 	</insert>
-	
+		
 	<!-- 공지사항 수정 -->
 	<update id="updateNotice">
 		UPDATE NOTICE_TBL SET NOTICE_SUBJECT = #{noticeSubject }, NOTICE_CONTENT = #{noticeContent }, NOTICE_FILENAME = #{noticeFilename }, NOTICE_FILERENAME = #{noticeFileRename }, NOTICE_FILEPATH =#{noticeFilepath }, NOTICE_FILELENGTH = #{noticeFilelength }, N_UPDATE_DATE=DEFAULT WHERE NOTICE_NO=#{noticeNo }

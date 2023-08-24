@@ -16,6 +16,7 @@
             <ul class="lnb_link_area">
               <li class="lnb_link_item"><a href="/member/logout.do">로그아웃</a></li>
               <li class="lnb_link_item"><a href="/member/mypage.do?memberId=${memberId}">마이페이지</a></li>
+<!--               <li class="lnb_link_item"><a href="/member/mypage.do">마이페이지</a></li> -->
               <li class="lnb_link_item"><a href="/notice/insert.do">공지사항 입력</a></li>
               <li class="lnb_link_item"><a href="/notice/list.do">공지사항 목록</a></li>
             </ul>

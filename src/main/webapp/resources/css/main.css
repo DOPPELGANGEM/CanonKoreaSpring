@@ -128,7 +128,7 @@ body { font-family: 'Noto Sans KR','Roboto', sans-serif;}
 #main_modify .info_gender label{ width:150px; }
 #main_modify .info_gender .check_radio { display:flex; width:400px; padding: 0 12px; }
 #main_modify .info_gender input { width:40px; height:20px; }
-#main_modify .info_address .address_btn { position:absolute; top:12px; right:170px; font-size:15px; width:130px; height:42px; background-color: #000; color:#fff; }
+#main_modify .info_address .address_btn { position:absolute; top:12px; right:170px; font-size:15px; width:130px; height:42px; background-color: #000; color:#fff; cursor:pointer; }
 #main_modify .btn_wrap { display: flex;  justify-content: center;  margin: 20px 0 0; }
 #main_modify .btn_wrap .btn_update { width: 180px; height: 60px; line-height: 60px; border-radius: 30px; font-size: 18px; text-align: center; border: none; cursor:pointer; background: #dc000c; color: #fff; margin-right: 10px; }
 #main_modify .btn_wrap .btn_delete { width: 180px; height: 60px; line-height: 60px; border-radius: 30px; font-size: 18px; text-align: center; border: none; cursor:pointer; background: #000; color: #fff; }
@@ -155,6 +155,18 @@ body { font-family: 'Noto Sans KR','Roboto', sans-serif;}
 #main_noticelist .table_wrap .thead_area tr { border-top: 1px solid #000; border-bottom: 1px solid #e6e6e6; background-color: #f9f9f9; height: 68px; }
 #main_noticelist .table_wrap .tbody_area tr { border-bottom:1px solid #e6e6e6; height:68px; }
 #main_noticelist .table_wrap .tbody_area td { text-align:center; }
+#main_noticelist .nav_area { position:relative; }
+#main_noticelist .nav_area a { margin: 0 6px; text-align: center; }
+#main_noticelist .nav_area a p { width:30px; height:30px; border: solid 1px #ccc;
+border-radius: 100%; position: relative; }
+#main_noticelist .nav_area a p:before { content: ''; display: block; width: 16px; height: 16px; opacity: 0.4; position: absolute; top:7px; background: url(/resources/images/notice/ico_arrow_right.svg) no-repeat;
+}
+#main_noticelist .nav_area a:first-child p:before { transform:rotate(180deg); left:6px; }
+#main_noticelist .nav_area a:last-child p:before { left:8px; }
+#main_noticelist .nav_area a span { display:none; }
+#main_noticelist .nav_area a.nav_link { position:absolute; }
+#main_noticelist .nav_area a.prev_link { left:360px; }
+#main_noticelist .nav_area a.next_link { right:360px; }
 
 /* 공지사항 찾기 */
 #main_searchlist .banner_wrap { position: relative; background:url("/resources/images/notice/notice_img.png") no-repeat; height: 340px; }
