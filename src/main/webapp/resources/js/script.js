@@ -5,6 +5,7 @@ popClose.addEventListener('click', function(){
   document.querySelector('.modal_area_wrap').style.display = 'none';
 });
 
+
 /* 로그인 유효성 검사 */
 const loginIdInput = document.querySelector(".canon_input_id");
 const loginPwInput = document.querySelector(".canon_input_pw");
@@ -14,11 +15,9 @@ loginBtn.addEventListener("click", function(){
 	if(loginIdInput.value === "" && loginPwInput.value === "" ) {
 		alert("id와 pw 값 모두 입력해주세요!!");
 	} else {
-		alert("로그인 확인중...");
+		alert("로그인 성공!");
 	}
 });
-
-
 
 
 /* joinMemberShip.jsp 우편번호 API */
@@ -29,6 +28,8 @@ function sample4_execDaumPostcode(){
 		}
 	}).open();
 }
+
+
 
 
 

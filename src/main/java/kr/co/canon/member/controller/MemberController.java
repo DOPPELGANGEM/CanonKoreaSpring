@@ -179,8 +179,8 @@ public class MemberController {
 			return "common/serviceFailed";
 		}
 	}
-
-	//마이페이지 Controller
+	
+//마이페이지 Controller
 	@RequestMapping(value="/member/mypage.do", method=RequestMethod.GET) 
 	public String showDetailMember(
 		// 쿼리스트링 받기 위해서 RequestParam 써줌
@@ -189,6 +189,7 @@ public class MemberController {
 		,Model model){
 		try {
 			Member member = service.showOneById(memberId);
+			System.out.println("member값:"+member);
 			if(member != null) {
 				model.addAttribute("member",member);
 				return "member/myPage";
@@ -203,6 +204,41 @@ public class MemberController {
 		}
 	}
 	
+	//마이페이지 Controller
+//	@RequestMapping(value="/member/mypage.do", method= {RequestMethod.GET, RequestMethod.POST})  //2개가능 (쿼리스트링이아닌 세션에서가져오므로)
+//	public String showDetailMember(
+//		// 쿼리스트링 받기 위해서 RequestParam 써줌
+////		@RequestParam("memberId") String memberId
+//		// 모델에 키와 값으로 데이터를 넣어주면 jsp에서 꺼내서 사용가능
+//		HttpSession session
+//		, Model model){
+//		try {
+//			String memberId = (String)session.getAttribute("memberId");
+//			Member member = null;
+//			System.out.println("memberId값" + memberId);
+//			if(memberId != "" && memberId != null) {
+//				member = service.showOneById(memberId);
+//			}
+//			if(member != null) {
+//				model.addAttribute("member", member);
+//				System.out.println("member값" + member);
+//				return "member/myPage";
+//			} else {
+//				model.addAttribute("msg", "회원정보조회를 완료하지 못했습니다.");
+//				model.addAttribute("error", "마이페이지 조회 실패");
+//				model.addAttribute("url","/index.jsp");
+//				return "common/serviceFailed";
+//			}
+//		} catch (Exception e) {
+//			model.addAttribute("msg", "관리자에게 문의해주세요.");
+//			model.addAttribute("error", e.getMessage());
+//			model.addAttribute("url", "/index.jsp");
+//			return "common/serviceFailed";
+//		}
+//	}
+	
+	
+
 	
 }
 

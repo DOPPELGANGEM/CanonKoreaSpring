@@ -41,7 +41,7 @@
 	
 	<!-- 회원 상세조회 -->
 	<select id="selectOneById" resultMap="memberResultMap">
-		SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId }
+		SELECT * FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId } AND MEMBER_YN = 'Y'
 	</select>
 	
 	<!-- 회원 수정여부 조회 -->
