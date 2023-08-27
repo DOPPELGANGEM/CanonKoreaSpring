@@ -9,9 +9,11 @@
 	<typeAliases>
 		<typeAlias type="kr.co.canon.member.domain.Member" alias="Member"/>
 		<typeAlias type="kr.co.canon.notice.domain.Notice" alias="Notice"/>
+		<typeAlias type="kr.co.canon.board.domain.Board" alias="Board"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member/member-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml"/>
 	</mappers>
 </configuration>
