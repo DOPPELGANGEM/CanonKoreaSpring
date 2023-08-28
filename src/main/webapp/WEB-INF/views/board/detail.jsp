@@ -49,19 +49,33 @@
 			<!-- 댓글등록 -->
 			<form action="/reply/add.do" method="post">
 				<input type="text" name="refBoardNo" value="${board.boardNo}"> <!-- 원래히든 -->
-				<table>
+				<table width="500" border="1">
 					<tr>
 						<td>
 							<textarea rows="3" cols="55" name="replyContent"></textarea>
 						</td>
 						<td>
-							<input type="submit" value="완료">
+							<input type="submit" value="등록하기">
 						</td>
 					</tr>
 				</table>
 			</form>
 			
-			
+			<!-- 댓글목록 -->
+			<table width="600" border="1">
+				<c:forEach var="reply" items="${rList}">
+					<tr>
+						<td>${reply.replyWriter}</td>
+						<td>${reply.replyContent}</td>
+						<td>${reply.rCreateDate}</td>
+						<td>
+							<a href="#">수정하기</a>
+							<a href="#">삭제하기</a>
+						</td>
+					</tr>
+				
+				</c:forEach>
+			</table>
 			
 			
 			

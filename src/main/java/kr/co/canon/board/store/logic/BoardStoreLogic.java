@@ -34,4 +34,10 @@ public class BoardStoreLogic implements BoardStore {
 		return bList;
 	}
 
+	@Override
+	public Board selectBoardByNo(SqlSession sqlSession, Integer boardNo) {
+		Board board = sqlSession.selectOne("BoardMapper.selectBoardByNo",boardNo);
+		return board;
+	}
+
 }

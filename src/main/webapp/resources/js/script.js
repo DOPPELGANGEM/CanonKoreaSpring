@@ -15,7 +15,7 @@ loginBtn.addEventListener("click", function(){
 	if(loginIdInput.value === "" && loginPwInput.value === "" ) {
 		alert("id와 pw 값 모두 입력해주세요!!");
 	} else {
-		alert("로그인 성공!");
+		alert("로그인 확인중..");
 	}
 });
 

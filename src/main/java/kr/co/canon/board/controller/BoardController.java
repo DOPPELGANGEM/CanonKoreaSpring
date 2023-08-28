@@ -22,7 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.canon.board.domain.Board;
 import kr.co.canon.board.domain.PageInfo;
+import kr.co.canon.board.domain.Reply;
 import kr.co.canon.board.service.BoardService;
+import kr.co.canon.board.service.ReplyService;
 
 @Controller
 //@RequestMapping("/board")
@@ -31,6 +33,40 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
+	//Reply쪽 서비스로감
+	@Autowired
+	private ReplyService rService;
+	
+	@RequestMapping(value="/board/detail.do", method=RequestMethod.GET)
+	public ModelAndView showBoardDetail(ModelAndView mv
+	, @RequestParam("boardNo") Integer boardNo) {
+		try {
+			Board boardOne = bService.selectBoardByNo(boardNo); //Board쪽 비즈니스로직
+			System.out.println("boardOne값" + boardOne); 
+			if(boardOne != null) {
+				// Reply쪽도 같이
+				List<Reply> replyList = rService.selectReplyList(boardNo); //Reply 비즈니스로직
+				System.out.println("replyList값" + replyList);
+				if(replyList.size() > 0) {
+					mv.addObject("rList", replyList);
+				}
+				mv.addObject("board", boardOne);
+				mv.setViewName("board/detail");
+			} else {
+				mv.addObject("msg", "게시글 등록이 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 상세 조회 실패");
+				mv.addObject("url", "/board/list.do");
+				mv.setViewName("common/serviceFailed");
+			}
+		} catch (Exception e) {
+				mv.addObject("msg", "게시글 등록이 완료되지 않았습니다.");
+				mv.addObject("error", e.getMessage());
+				mv.addObject("url", "/board/list.do");
+				mv.setViewName("common/serviceFailed");
+		}
+		return mv;
+	}
+
 	// *** 게시글등록 Controller ***
 	//Model과 차이점은 Model은 데이터만 저장하는데,
 	//ModelAndView는 데이터와 이동하고자 하는 View Page를 같이 저장한다
@@ -100,16 +136,6 @@ public class BoardController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/board/detail.do", method=RequestMethod.GET)
-	public ModelAndView showBoardDetail(
-		ModelAndView mv
-	, @RequestParam("boardNo") Integer boardNo
-			) {
-		
-		return mv;
-	}
-
-
 	private PageInfo getPageInfo(Integer currentPage, int totalCount) {
 		
 		int recordCountPerPage = 10; // 한페이징보여질 갯수

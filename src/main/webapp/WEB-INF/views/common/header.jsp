@@ -11,6 +11,7 @@
 	        <li class="header_util_item"><a href="/member/logout.do">로그아웃</a></li>
 	        <li class="header_util_item"><a href="/member/mypage.do?memberId=${memberId}">마이페이지</a></li>
 	        <li class="header_util_item"><a href="/notice/insert.do">공지사항</a></li>
+	        <li class="header_util_item"><a href="/board/list.do">게시판</a></li>
 	      </ul>
 	    </div>
 	    <nav class="nav_center">

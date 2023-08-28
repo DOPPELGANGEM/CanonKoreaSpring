@@ -32,4 +32,12 @@ public interface BoardStore {
 	 */
 	List<Board> selectBoardList(SqlSession sqlSession, PageInfo pInfo);
 
+	/**
+	 * 게시글 상세조회 Store
+	 * @param sqlSession
+	 * @param boardNo
+	 * @return
+	 */
+	Board selectBoardByNo(SqlSession sqlSession, Integer boardNo);
+
 }
