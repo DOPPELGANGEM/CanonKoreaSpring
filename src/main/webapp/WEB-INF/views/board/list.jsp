@@ -18,6 +18,7 @@
 		      		<thead class="thead_area">
 			            <tr>
 			              	<th>번호</th>
+			              	<th style="color:#dc000c;">게시글번호(boardNo)</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>작성날짜</th>
@@ -32,6 +33,7 @@
 								<c:url var="detailUrl" value="/board/detail.do">
 									<c:param name="boardNo" value="${board.boardNo}"></c:param>
 								</c:url>
+								<td><strong style="color:#dc000c;">${board.boardNo}</strong></td>
 								<td><a href="${detailUrl }">${board.boardTitle }</a></td>
 								<td>${board.boardWriter }</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.bCreateDate }"/></td>
@@ -45,7 +47,7 @@
 	          		</tbody>
 	          		<tfoot>
 						<tr class="nav_area"> 
-							<td colspan="6">
+							<td colspan="7">
 								<c:if test="${pInfo.startNavi != 1}">
 									<c:url var="prevUrl" value="/board/list.do">
 										<c:param name="page" value="${pInfo.startNavi-1}"></c:param>

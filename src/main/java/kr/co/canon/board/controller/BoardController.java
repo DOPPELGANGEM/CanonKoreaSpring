@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,7 +31,6 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
-	
 	// *** 게시글등록 Controller ***
 	//Model과 차이점은 Model은 데이터만 저장하는데,
 	//ModelAndView는 데이터와 이동하고자 하는 View Page를 같이 저장한다
@@ -39,7 +39,6 @@ public class BoardController {
 		mv.setViewName("board/insert");
 		return mv;
 	}
-	
 	
 	@RequestMapping(value="/board/insert.do", method=RequestMethod.POST)
 	public ModelAndView boardRegister(
@@ -98,6 +97,15 @@ public class BoardController {
 			mv.addObject("url", "/board/insert.do");
 			mv.setViewName("common/serviceFailed");
 		} 
+		return mv;
+	}
+	
+	@RequestMapping(value="/board/detail.do", method=RequestMethod.GET)
+	public ModelAndView showBoardDetail(
+		ModelAndView mv
+	, @RequestParam("boardNo") Integer boardNo
+			) {
+		
 		return mv;
 	}
 
