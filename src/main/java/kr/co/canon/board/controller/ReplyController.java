@@ -53,11 +53,77 @@ public class ReplyController {
 			mv.addObject("msg", "관리자에게 문의바랍니다.");
 			mv.addObject("error", e.getMessage());
 			mv.addObject("url", url);
-			mv.setViewName("common/errorPage");
+			mv.setViewName("common/serviceFailed");
 		}
 		return mv;
 	}
 	
+	@RequestMapping(value="/update.do", method=RequestMethod.POST)
+	public ModelAndView updateReply(ModelAndView mv
+		, @ModelAttribute Reply reply	
+		, HttpSession session	) {
+		String url = "";
+		try {
+			String replyWriter = (String)session.getAttribute("memberId");
+			System.out.println("수정된 replyWriter값 ="+ replyWriter);
+			if(replyWriter != null && !replyWriter.equals("")) {
+				url = "/board/detail.do?boardNo="+reply.getRefBoardNo();
+				int result = rService.updateReply(reply);
+				mv.setViewName("redirect:"+url);
+			} else {
+				mv.addObject("msg", "로그인이 되지 않았습니다.");
+				mv.addObject("error", "로그인 정보확인 실패");
+				mv.addObject("url", "/index.jsp");
+				mv.setViewName("common/serviceFailed");
+			}
+		} catch(Exception e) {
+			mv.addObject("msg", "관리자에게 문의바랍니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", url);
+			mv.setViewName("common/serviceFailed");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/delete.do", method=RequestMethod.GET)
+	public ModelAndView deleteReply(
+		ModelAndView mv
+	, @ModelAttribute Reply reply
+	, HttpSession session ) {
+		String url = ""; // 전역변수 catch 절때문
+		try {
+			String memberId = (String)session.getAttribute("memberId");
+			String replyWriter = reply.getReplyWriter();
+			System.out.println("삭제할 replyWriter값=" + replyWriter);
+			url = "/board/detail.do?boardNo="+reply.getRefBoardNo();
+			if(replyWriter != null && replyWriter.equals(memberId)) {
+				// 삭제라는 것을 session과 똑같이 만약 그 아이디가 지우면 그 댓글이 지워지게
+				int result = rService.deleteReply(reply);
+				if(result > 0) {
+					// 성공
+					mv.setViewName("redirect:"+url);
+				} else {
+					// 실패
+					mv.addObject("msg", "댓글 삭제가 완료되지 않았습니다.");
+					mv.addObject("error", "댓글 삭제 실패");
+					mv.addObject("url", url);
+					mv.setViewName("common/serviceFailed");
+				}
+			} else {
+				mv.addObject("msg", "자신의 댓글만 삭제할 수 있습니다.");
+				mv.addObject("error", "댓글 삭제 불가");
+				mv.addObject("url", url);
+				mv.setViewName("common/serviceFailed");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의바랍니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", url);
+			mv.setViewName("common/serviceFailed");
+		}
+		return mv;
+	}
 	
 	
 	

@@ -14,8 +14,22 @@ public interface ReplyService {
 	int insertReply(Reply reply);
 
 	/**
-	 * Board Controller에서 옴
+	 * 게시글 댓글 수정 Service
+	 * @param reply
+	 * @return
+	 */
+	int updateReply(Reply reply);
+
+	/**
+	 * 게시판 댓글삭제 Service 
+	 * @param reply
+	 * @return
+	 */
+	int deleteReply(Reply reply);
+
+	/**
 	 * 댓글 리스트 조회 Service
+	 * Board Controller에서 옴
 	 * @param boardNo
 	 * @return
 	 */

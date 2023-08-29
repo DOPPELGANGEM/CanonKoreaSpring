@@ -5,7 +5,6 @@ popClose.addEventListener('click', function(){
   document.querySelector('.modal_area_wrap').style.display = 'none';
 });
 
-
 /* 로그인 유효성 검사 */
 const loginIdInput = document.querySelector(".canon_input_id");
 const loginPwInput = document.querySelector(".canon_input_pw");
@@ -19,7 +18,6 @@ loginBtn.addEventListener("click", function(){
 	}
 });
 
-
 /* joinMemberShip.jsp 우편번호 API */
 function sample4_execDaumPostcode(){
 	new daum.Postcode({
@@ -29,8 +27,29 @@ function sample4_execDaumPostcode(){
 	}).open();
 }
 
+/* 댓글 수정 */
+function showReplyModifyForm(obj, replyContent) {
+	//alert("clicked");
+	//console.log(trTagDisplay.parentElement.parentElement.nextElementSibling);
+	const modifyFormTag = obj.parentElement.parentElement.nextElementSibling;
+	console.log(modifyFormTag);
+	modifyFormTag.style.display = "block";
+}
+
+function replyModify(obj, replyNo, refBoardNo){
+	//alert("clicked");
+	//const modifyInputValue = obj.parentElement.previousElementSibling.childNodes[0].value;
+	//modifyInputValue.action = "/reply/update.do";
+	//modifyInputValue.method = "post";
+	//modifyInputValue.submit();
+}
 
 
+
+/* 댓글 삭제 */
+function deleteReply(url){
+	location.href= url;
+}
 
 
 

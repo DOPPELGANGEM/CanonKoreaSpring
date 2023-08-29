@@ -211,11 +211,12 @@ border-radius: 100%; position: relative; }
 
 
 /* 게시판 입력 */
-
 /* 게시판 목록 */
 /* 게시판 찾기 */
 /* 게시판 상세 */
 /* 게시판 수정 */
+/* 댓글 수정 */
+#main_detail #replyModifyForm { display:none; }
 
 /* tablet */
 @media screen and (min-width: 769px) and (max-width: 1440px){

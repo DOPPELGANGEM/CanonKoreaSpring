@@ -40,9 +40,9 @@
 	        </ul>
 
 			<div>
-				<button type="button" onclick="showModifyPage();">수정하기</button>
+				<button type="button" onclick="showModifyPage();">게시판 수정하기</button>
 				<button>삭제하기</button>
-				<button type="button" onclick="showNoticeList();">목록으로</button>
+				<button type="button" onclick="showNoticeList();">게시판 목록으로</button>
 			</div>
 			<hr>
 			
@@ -61,7 +61,7 @@
 				</table>
 			</form>
 			
-			<!-- 댓글목록 -->
+			<!-- 댓글목록 (수정삭제버튼포함) -->
 			<table width="600" border="1">
 				<c:forEach var="reply" items="${rList}">
 					<tr>
@@ -69,16 +69,33 @@
 						<td>${reply.replyContent}</td>
 						<td>${reply.rCreateDate}</td>
 						<td>
-							<a href="#">수정하기</a>
-							<a href="#">삭제하기</a>
+							<!-- 기본이벤트없애기 javascript:void(0) this로 foreach문에 있는것을 탐색하기위해-->
+							<a href="javascript:void(0)" onclick="showReplyModifyForm(this,'${reply.replyContent}');">수정하기</a> 
+							<c:url var="delUrl" value="/reply/delete.do">
+								<c:param name="replyNo" value="${reply.replyNo}"></c:param>
+								<!-- 내것만지우게 하도록 추가함 -->
+								<c:param name="replyWriter" value="${reply.replyWriter}"></c:param>
+								<!-- 성공하면 디테일로 가기 위해 필요한 boardNo 셋팅 -->
+								<c:param name="refBoardNo" value="${reply.refBoardNo}"></c:param>
+							</c:url>
+							<a href="javascript:void(0)" onclick="deleteReply('${delUrl }');">삭제하기</a>
 						</td>
 					</tr>
-				
+					<tr id="replyModifyForm">
+						<form action="/reply/update.do" method="post">
+							<input type="hidden" name="replyNo" value="${reply.replyNo}">
+							<input type="hidden" name="refBoardNo" value="${reply.refBoardNo }">
+							<td colspan="3"><input type="text" name="replyContent" value="${reply.replyContent }"></td>
+							<td><input type="submit" value="완료"></td>
+						</form>
+
+<%-- 						<td colspan="3"><input id="replyContent" type="text" name="replyContent" value="${reply.replyContent }"></td> --%>
+<%-- 						<td><input type="button" onclick="replyModify(this,'${reply.replyNo}','${reply.refBoardNo }');" value="완료"></td> --%>
+					</tr>
 				</c:forEach>
 			</table>
-			
-			
-			
+	
+	
 	      </div>
 	   </main>
 	   <!-- 푸터 -->
