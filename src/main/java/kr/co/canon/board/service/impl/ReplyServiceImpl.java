@@ -32,6 +32,12 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	public int updateLike(Reply reply) {
+		int result = rStore.updateLike(session, reply);
+		return result;
+	}
+
+	@Override
 	public int deleteReply(Reply reply) {
 		int result = rStore.deleteReply(session, reply);
 		return result;
@@ -42,6 +48,8 @@ public class ReplyServiceImpl implements ReplyService {
 		List<Reply> rList = rStore.selectReplyList(session, refBoardNo);
 		return rList;
 	}
+
+	
 
 	
 	

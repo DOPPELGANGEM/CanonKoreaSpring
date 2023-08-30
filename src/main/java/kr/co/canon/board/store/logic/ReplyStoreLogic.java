@@ -24,6 +24,12 @@ public class ReplyStoreLogic implements ReplyStore {
 	}
 
 	@Override
+	public int updateLike(SqlSession session, Reply reply) {
+		int result = session.update("ReplyMapper.updateLike", reply);
+		return result;
+	}
+
+	@Override
 	public int deleteReply(SqlSession session, Reply reply) {
 		int result = session.delete("ReplyMapper.deleteReply", reply);
 		return result;

@@ -21,6 +21,13 @@ public interface ReplyService {
 	int updateReply(Reply reply);
 
 	/**
+	 * 게시글 좋아요 Service
+	 * @param reply
+	 * @return
+	 */
+	int updateLike(Reply reply);
+
+	/**
 	 * 게시판 댓글삭제 Service 
 	 * @param reply
 	 * @return

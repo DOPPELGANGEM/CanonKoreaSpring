@@ -40,7 +40,7 @@
 	        </ul>
 	        
 	        <!-- 게시글 수정삭제 -->
-			${board}
+<%-- 			${board} --%>
 			<c:url var="boardDelUrl" value="/board/delete.do">
 				<c:param name="boardNo" value="${board.boardNo}"></c:param>
 				<c:param name="boardWriter" value="${board.boardWriter}"></c:param>
@@ -90,6 +90,16 @@
 								<c:param name="refBoardNo" value="${reply.refBoardNo}"></c:param>
 							</c:url>
 							<a href="javascript:void(0)" onclick="deleteReply('${delUrl }');">삭제하기</a>
+							<c:url var="likeUrl" value="/reply/like.do">
+								<c:param name="replyNo" value="${reply.replyNo}"></c:param>
+								<!-- 내것만지우게 하도록 추가함 -->
+								<c:param name="replyWriter" value="${reply.replyWriter}"></c:param>
+								<!-- 성공하면 디테일로 가기 위해 필요한 boardNo 셋팅 -->
+								<c:param name="refBoardNo" value="${reply.refBoardNo}"></c:param>
+							</c:url>
+							<a href="javascript:void(0)" onclick="likeReply('${likeUrl }');">좋아요<sup>${reply.refLike}</sup></a>
+							
+							<button type="button" id="unlike_btn" >싫어요</button>
 						</td>
 					</tr>
 					<tr id="replyModifyForm">

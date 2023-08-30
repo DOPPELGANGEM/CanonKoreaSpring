@@ -11,6 +11,7 @@ public class Reply {
 	private Date rUpdateDate;
 	private char updateYn;
 	private char rStatus;
+	private int refLike; 
 	
 	public int getReplyNo() {
 		return replyNo;
@@ -61,11 +62,18 @@ public class Reply {
 		this.rStatus = rStatus;
 	}
 	
+	public int getRefLike() {
+		return refLike;
+	}
+	public void setRefLike(int refLike) {
+		this.refLike = refLike;
+	}
+	
 	@Override
 	public String toString() {
 		return "댓글 [댓글번호=" + replyNo + ", 게시글번호=" + refBoardNo + ", 내용=" + replyContent
 				+ ", 작성자=" + replyWriter + ", 작성일=" + rCreateDate + ", 수정일=" + rUpdateDate
-				+ ", 수정여부=" + updateYn + ", 사용여부=" + rStatus + "]";
+				+ ", 수정여부=" + updateYn + ", 사용여부=" + rStatus + ", 좋아요=" + refLike + "]";
 	}
 	
 	

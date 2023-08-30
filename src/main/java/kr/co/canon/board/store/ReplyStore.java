@@ -25,6 +25,14 @@ public interface ReplyStore {
 	int updateReply(SqlSession session, Reply reply);
 
 	/**
+	 * 게시글 좋아요 Store
+	 * @param session
+	 * @param reply
+	 * @return
+	 */
+	int updateLike(SqlSession session, Reply reply);
+
+	/**
 	 * 게시글 댓글 삭제 Store
 	 * @param session
 	 * @param reply

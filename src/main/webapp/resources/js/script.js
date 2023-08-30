@@ -58,10 +58,15 @@ function replyModify(obj, replyNo, refBoardNo){
 
 /* 댓글 삭제 */
 function deleteReply(url){
+console.log(url);
 	location.href= url;
 }
 
-
+/* 댓글 좋아요 */
+function likeReply(url){
+	console.log(url);
+	location.href= url;
+}
 
 
 
