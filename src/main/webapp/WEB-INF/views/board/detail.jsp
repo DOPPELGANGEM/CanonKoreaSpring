@@ -38,11 +38,22 @@
 	            <input type="file" id="boardFileAdd" class="boardFileAdd" name="boardFileAdd">
 		       </li>
 	        </ul>
-
+	        
+	        <!-- 게시글 수정삭제 -->
+			${board}
+			<c:url var="boardDelUrl" value="/board/delete.do">
+				<c:param name="boardNo" value="${board.boardNo}"></c:param>
+				<c:param name="boardWriter" value="${board.boardWriter}"></c:param>
+			</c:url>
+			<c:url var="modifyUrl" value="/board/modify.do">
+				<c:param name="boardNo" value="${board.boardNo}"></c:param>
+			</c:url>
 			<div>
-				<button type="button" onclick="showModifyPage();">게시판 수정하기</button>
-				<button>삭제하기</button>
-				<button type="button" onclick="showNoticeList();">게시판 목록으로</button>
+				<c:if test="${board.boardWriter eq memberId }">
+					<button type="button" onclick="showModifyPage('${modifyUrl }');">수정하기</button>
+					<button type="button" onclick="deleteBoard('${boardDelUrl }');">삭제하기</button>
+				</c:if>
+				<a href="/board/list.do">목록으로</a>
 			</div>
 			<hr>
 			
@@ -100,5 +111,6 @@
 	   </main>
 	   <!-- 푸터 -->
     	<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+    	
 	</body>
 </html>

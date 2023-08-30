@@ -14,6 +14,13 @@ public interface BoardService {
 	 */
 	int insertBoard(Board board);
 
+	/**
+	 * 게시글 삭제 Service
+	 * @param board
+	 * @return
+	 */
+	int deleteBoard(Board board);
+
 	/**전체 게시물 갯수 Service
 	 * @return
 	 */
@@ -27,7 +34,7 @@ public interface BoardService {
 	List<Board> selectBoardList(PageInfo pInfo);
 
 	/**
-	 * 게시글
+	 * 게시글 상세 조회 Service
 	 * @param boardNo
 	 * @return
 	 */

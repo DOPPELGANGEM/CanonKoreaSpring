@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,6 @@ import kr.co.canon.board.service.BoardService;
 import kr.co.canon.board.service.ReplyService;
 
 @Controller
-//@RequestMapping("/board")
 public class BoardController {
 	
 	@Autowired
@@ -37,36 +37,6 @@ public class BoardController {
 	@Autowired
 	private ReplyService rService;
 	
-	@RequestMapping(value="/board/detail.do", method=RequestMethod.GET)
-	public ModelAndView showBoardDetail(ModelAndView mv
-	, @RequestParam("boardNo") Integer boardNo) {
-		try {
-			Board boardOne = bService.selectBoardByNo(boardNo); //Board쪽 비즈니스로직
-			System.out.println("boardOne값" + boardOne); 
-			if(boardOne != null) {
-				// Reply쪽도 같이
-				List<Reply> replyList = rService.selectReplyList(boardNo); //Reply 비즈니스로직
-				System.out.println("replyList값" + replyList);
-				if(replyList.size() > 0) {
-					mv.addObject("rList", replyList);
-				}
-				mv.addObject("board", boardOne);
-				mv.setViewName("board/detail");
-			} else {
-				mv.addObject("msg", "게시글 등록이 완료되지 않았습니다.");
-				mv.addObject("error", "게시글 상세 조회 실패");
-				mv.addObject("url", "/board/list.do");
-				mv.setViewName("common/serviceFailed");
-			}
-		} catch (Exception e) {
-				mv.addObject("msg", "게시글 등록이 완료되지 않았습니다.");
-				mv.addObject("error", e.getMessage());
-				mv.addObject("url", "/board/list.do");
-				mv.setViewName("common/serviceFailed");
-		}
-		return mv;
-	}
-
 	// *** 게시글등록 Controller ***
 	//Model과 차이점은 Model은 데이터만 저장하는데,
 	//ModelAndView는 데이터와 이동하고자 하는 View Page를 같이 저장한다
@@ -75,7 +45,7 @@ public class BoardController {
 		mv.setViewName("board/insert");
 		return mv;
 	}
-	
+
 	@RequestMapping(value="/board/insert.do", method=RequestMethod.POST)
 	public ModelAndView boardRegister(
 		ModelAndView mv
@@ -106,6 +76,93 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping(value="/board/modify.do", method=RequestMethod.GET)
+	public ModelAndView showModifyForm(ModelAndView mv
+			, @RequestParam("boardNo") Integer boardNo) {
+		try {
+			Board board = bService.selectBoardByNo(boardNo);
+			mv.addObject("board", board);
+			mv.setViewName("board/modify");
+		} catch (Exception e) {
+			mv.addObject("msg", "게시글 등록이 완료되지 않았습니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/board/indert.do");
+			mv.setViewName("common/serviceFailed");
+		}
+		
+		return mv;
+	}
+	
+	
+
+	@RequestMapping(value="/board/delete.do", method=RequestMethod.GET)
+	public ModelAndView deleteBoard(
+			ModelAndView mv
+		, @RequestParam("boardNo") Integer boardNo
+		, @RequestParam("boardWriter") String boardWriter
+		, HttpSession session) {
+		try {
+			String memberId = (String)session.getAttribute("memberId");
+			System.out.println("게시판 삭제할 memberId값="+memberId );
+			Board board = new Board();
+			board.setBoardNo(boardNo);
+			board.setBoardWriter(boardWriter);
+			if(boardWriter != null && boardWriter.equals(memberId)) {
+				int result = bService.deleteBoard(board);
+				System.out.println("result 값=" + result);
+				if(result > 0) {
+					mv.setViewName("redirect:/board/list.do");
+				} else {
+					mv.addObject("msg", "게시글 삭제가 완료되지 않았습니다.");
+					mv.addObject("error", "게시글 삭제 불가");
+					mv.addObject("url", "/board/list.do");
+					mv.setViewName("common/serviceFailed");
+				}
+			} else {
+				mv.addObject("msg", "본인이 작성한 글만 삭제할수 있습니다.");
+				mv.addObject("error", "게시글 삭제 불가");
+				mv.addObject("url", "/board/list.do");
+				mv.setViewName("common/serviceFailed");
+			}
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의바랍니다~");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", "/board/list.do");
+			mv.setViewName("common/serviceFailed");
+		}
+		return mv;
+	}
+
+	@RequestMapping(value="/board/detail.do", method=RequestMethod.GET)
+	public ModelAndView showBoardDetail(ModelAndView mv
+	, @RequestParam("boardNo") Integer boardNo) {
+		try {
+			Board boardOne = bService.selectBoardByNo(boardNo); //Board쪽 비즈니스로직
+			System.out.println("boardOne값" + boardOne); 
+			if(boardOne != null) {
+				// Reply쪽도 같이
+				List<Reply> replyList = rService.selectReplyList(boardNo); //Reply 비즈니스로직
+				System.out.println("replyList값" + replyList);
+				if(replyList.size() > 0) {
+					mv.addObject("rList", replyList);
+				}
+				mv.addObject("board", boardOne);
+				mv.setViewName("board/detail");
+			} else {
+				mv.addObject("msg", "게시글 등록이 완료되지 않았습니다.");
+				mv.addObject("error", "게시글 상세 조회 실패");
+				mv.addObject("url", "/board/list.do");
+				mv.setViewName("common/serviceFailed");
+			}
+		} catch (Exception e) {
+				mv.addObject("msg", "게시글 등록이 완료되지 않았습니다.");
+				mv.addObject("error", e.getMessage());
+				mv.addObject("url", "/board/list.do");
+				mv.setViewName("common/serviceFailed");
+		}
+		return mv;
+	}
+
 	@RequestMapping(value="/board/list.do", method=RequestMethod.GET) 
 	public ModelAndView showBoardList(
 			@RequestParam(value="page", required=false, defaultValue="1") Integer currentPage

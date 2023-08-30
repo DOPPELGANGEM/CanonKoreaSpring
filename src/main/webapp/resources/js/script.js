@@ -27,6 +27,18 @@ function sample4_execDaumPostcode(){
 	}).open();
 }
 
+/* 게시판 수정 */
+function showModifyPage(modifyUrl) {
+	//alert(modifyUrl);
+	location.href = modifyUrl;
+}
+
+/* 게시판 삭제 */
+function deleteBoard(boardDelUrl){
+	//alert(boardDelUrl);
+	location.href = boardDelUrl;
+}
+
 /* 댓글 수정 */
 function showReplyModifyForm(obj, replyContent) {
 	//alert("clicked");
@@ -43,8 +55,6 @@ function replyModify(obj, replyNo, refBoardNo){
 	//modifyInputValue.method = "post";
 	//modifyInputValue.submit();
 }
-
-
 
 /* 댓글 삭제 */
 function deleteReply(url){
