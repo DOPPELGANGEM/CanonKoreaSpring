@@ -1,7 +1,8 @@
 # CanonKoreaSpring
 CanonKorea Spring Framework 활용한 MVC 개인프로젝트 
 
-<h1>설명</h1>
+<hr>
+<h1>기능설명</h1>
 <h2>1.Member part</h2>
 <p>
   1.회원가입 <br>
