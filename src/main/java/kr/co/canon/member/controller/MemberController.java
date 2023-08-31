@@ -160,6 +160,7 @@ public class MemberController {
 				model.addAttribute("url", "/member/register.kh");
 				return "common/serviceFailed";
 			}
+			
 
 	}
 	
