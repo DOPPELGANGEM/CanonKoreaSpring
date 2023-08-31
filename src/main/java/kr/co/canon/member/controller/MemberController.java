@@ -55,6 +55,7 @@ public class MemberController {
 			return "common/serviceFailed";
 		}
 		
+		
 	}
 	
 	//회원수정 Controller
