@@ -13,10 +13,13 @@
 		<result property="updateYn" 			column="UPDATE_YN" />
 		<result property="rStatus" 				column="R_STATUS" />
 		<result property="refLike" 				column="REF_LIKE" />
+		<result property="refUnLike" 			column="REF_UNLIKE" />
 	</resultMap>
 	
 	<insert id="insertReply">
-		INSERT INTO REPLY_TBL VALUES(SEQ_REPLY_NO.NEXTVAL, #{refBoardNo }, #{replyContent },#{replyWriter }, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
+		INSERT INTO REPLY_TBL VALUES(SEQ_REPLY_NO.NEXTVAL, #{refBoardNo }, 
+		#{replyContent },#{replyWriter }, 
+		DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT)
 	</insert>
 	
 	<update id="updateReply">
@@ -25,6 +28,10 @@
 	
 	<update id="updateLike">
 		UPDATE REPLY_TBL SET REF_LIKE = REF_LIKE + 1 WHERE REPLY_NO = #{replyNo }
+	</update>
+	
+	<update id="updateUnLike">
+		UPDATE REPLY_TBL SET REF_UNLIKE = REF_UNLIKE + 1 WHERE REPLY_NO = #{replyNo }
 	</update>
 	
 	<delete id="deleteReply">

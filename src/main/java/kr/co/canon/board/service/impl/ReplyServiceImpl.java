@@ -38,6 +38,12 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	public int updateUnLike(Reply reply) {
+		int result = rStore.updateUnLike(session, reply);
+		return result;
+	}
+
+	@Override
 	public int deleteReply(Reply reply) {
 		int result = rStore.deleteReply(session, reply);
 		return result;

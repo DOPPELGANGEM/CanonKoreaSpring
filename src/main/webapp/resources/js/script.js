@@ -29,8 +29,8 @@ function sample4_execDaumPostcode(){
 
 /* 게시판 수정 */
 function showModifyPage(modifyUrl) {
-	//alert(modifyUrl);
-	location.href = modifyUrl;
+	alert(modifyUrl);
+	//location.href = modifyUrl;
 }
 
 /* 게시판 삭제 */
@@ -58,7 +58,7 @@ function replyModify(obj, replyNo, refBoardNo){
 
 /* 댓글 삭제 */
 function deleteReply(url){
-console.log(url);
+	//alert(url);
 	location.href= url;
 }
 
@@ -68,7 +68,11 @@ function likeReply(url){
 	location.href= url;
 }
 
-
+/* 댓글 싫어요 */
+function unLikeReply(url){
+	//alert(url);
+	location.href= url;
+}
 
 
 

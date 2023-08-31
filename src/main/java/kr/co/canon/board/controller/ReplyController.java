@@ -134,22 +134,49 @@ public class ReplyController {
 		try {
 			String memberId = (String)session.getAttribute("memberId");
 			String replyWriter = reply.getReplyWriter();
-			System.out.println("삭제할 replyWriter값=" + replyWriter);
 			url = "/board/detail.do?boardNo="+reply.getRefBoardNo();
-		
-			// 삭제라는 것을 session과 똑같이 만약 그 아이디가 지우면 그 댓글이 지워지게
 			int result = rService.updateLike(reply);
 			if(result > 0) {
 				// 성공
 				mv.setViewName("redirect:"+url);
 			} else {
 				// 실패
-				mv.addObject("msg", "댓글 삭제가 완료되지 않았습니다.");
-				mv.addObject("error", "댓글 삭제 실패");
+				mv.addObject("msg", "댓글 좋아요가 완료되지 않았습니다.");
+				mv.addObject("error", "댓글 좋아요 실패");
 				mv.addObject("url", url);
 				mv.setViewName("common/serviceFailed");
 			}
-			
+		} catch (Exception e) {
+			mv.addObject("msg", "관리자에게 문의바랍니다.");
+			mv.addObject("error", e.getMessage());
+			mv.addObject("url", url);
+			mv.setViewName("common/serviceFailed");
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="/unlike.do", method=RequestMethod.GET)
+	public ModelAndView updateUnLike(
+		ModelAndView mv
+	, @ModelAttribute Reply reply
+	, HttpSession session ) {
+		String url = ""; // 전역변수 catch 절때문
+		try {
+			String memberId = (String)session.getAttribute("memberId");
+			String replyWriter = reply.getReplyWriter();
+			url = "/board/detail.do?boardNo="+reply.getRefBoardNo();
+			int result = rService.updateUnLike(reply);
+			System.out.println("싫어요결과result:"+result);
+			if(result > 0) {
+				// 성공
+				mv.setViewName("redirect:"+url);
+			} else {
+				// 실패
+				mv.addObject("msg", "댓글 싫어요가 완료되지 않았습니다.");
+				mv.addObject("error", "댓글 싫어요 실패");
+				mv.addObject("url", url);
+				mv.setViewName("common/serviceFailed");
+			}
 		} catch (Exception e) {
 			mv.addObject("msg", "관리자에게 문의바랍니다.");
 			mv.addObject("error", e.getMessage());

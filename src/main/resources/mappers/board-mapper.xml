@@ -19,9 +19,7 @@
 	</resultMap>
 	
 	<insert id="insertBoard">
-		INSERT INTO BOARD_TBL VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle }, #{boardContent }, #{boardWriter }, #{boardFileName },
-		#{boardFileRename },#{boardFilePath },#{boardFileLength }, 
-		0, DEFAULT,DEFAULT,DEFAULT)
+		INSERT INTO BOARD_TBL VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle }, #{boardContent }, #{boardWriter }, #{boardFileName }, #{boardFileRename },#{boardFilePath },#{boardFileLength }, 0, DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 	
 	<delete id="deleteBoard">
