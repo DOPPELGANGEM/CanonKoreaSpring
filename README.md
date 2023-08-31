@@ -30,4 +30,6 @@ CanonKorea Spring Framework 활용한 MVC 개인프로젝트
   1.댓글 입력 <br>
   2.댓글 수정 <br>
   3.댓글 삭제 <br>
+  4.댓글 좋아요 <br>
+  5.댓글 싫어요
 </p>
