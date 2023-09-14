@@ -44,7 +44,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member showOneById(String memberId) {
 		Member member = mStore.selectOneById(sqlSession, memberId);
-		System.out.println(sqlSession);
 		return member;
 	}
 
