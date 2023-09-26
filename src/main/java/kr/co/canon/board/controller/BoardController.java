@@ -27,7 +27,6 @@ import kr.co.canon.board.domain.Reply;
 import kr.co.canon.board.service.BoardService;
 import kr.co.canon.board.service.ReplyService;
 
-
 @Controller
 public class BoardController {
 	
