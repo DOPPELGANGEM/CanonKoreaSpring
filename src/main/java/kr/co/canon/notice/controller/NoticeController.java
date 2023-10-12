@@ -30,7 +30,6 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 	
-
 	/**
 	 * 공지사항 insert Controller
 	 * return "notice/insert";
